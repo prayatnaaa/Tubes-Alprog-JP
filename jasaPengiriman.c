@@ -54,23 +54,23 @@ if(brg.berat <= 5){
 }else if(brg.berat>5){
     int temp= (brg.berat % 5);
     if(temp==0){
-        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 5000;
+        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 1000;
     }else{
-        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 5000;
+        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 1000;
     }
 }
 }
 float kirimCepat(){
 
 if(brg.berat <= 5){
-    brg.harga= ((brg.berat*5)/ brg.berat * 8000);
+    brg.harga= ((brg.berat*5)/ brg.berat * 2000);
 
 }else if(brg.berat>5){
     int temp= (brg.berat % 5);
     if(temp==0){
-        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 8000;
+        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 2000;
     }else{
-        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 8000;
+        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 2000;
     }
 
 }
