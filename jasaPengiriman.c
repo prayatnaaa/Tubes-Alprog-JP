@@ -212,7 +212,6 @@ kirimReguler();
 pengaman();
 jarak();
 metodeBayar();
-getchar();
 cobaLagi();
 break;
 
@@ -221,7 +220,6 @@ kirimCepat();
 pengaman();
 jarak();
 metodeBayar();
-getchar();
 cobaLagi();
 break;
 
