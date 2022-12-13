@@ -130,8 +130,8 @@ switch(pilih){
 float jarak(){
 
 int pilih;
-printf("================================== \n");
-printf("Masukan Estimasi Jarak Pengiriman: ");
+printf("======================================= \n");
+printf("Masukan Estimasi Jarak Pengiriman (km): ");
 scanf("%d", &brg.jarak);
 system("clear || cls");
 
@@ -235,7 +235,7 @@ dataPelanggan();
 
 
 printf("=============================== \n");
-printf("Berat barang: ");
+printf("Berat barang (kg): ");
 scanf("%d", &brg.berat);
 system("clear || cls");
 
