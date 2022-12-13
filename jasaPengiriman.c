@@ -6,6 +6,7 @@ struct pelanggan {
 
 char nama[100];
 char alamat[100];
+int telp[13];
 } pel;
 
 struct barang{
@@ -87,6 +88,8 @@ fflush(stdin);
 printf("Alamat: ");
 scanf("%[^ \n]", pel.alamat);
 fflush(stdin);
+printf("No. Hp: ");
+scanf("%d", pel.telp);
 system("clear || cls");
 }
 
