@@ -212,27 +212,23 @@ fflush(stdin);
 switch(pilih){
 
     case 1:
-        //perlindungan="SILVER";
         strcpy(perlindungan, "SILVER");
         amn.harga2=amn.harga1 + 1000;
         fflush(stdin);
         break;
 
     case 2:
-        //perlindungan="GOLD";
         strcpy(perlindungan, "GOLD");
         amn.harga2= amn.harga1 + 2000;
         fflush(stdin);
         break;
         
     case 3:
-        //perlindungan="PLATINUM";
         strcpy(perlindungan, "PLATINUM");
         amn.harga2=amn.harga1 + 4000;
         fflush(stdin);
 
     case 4:
-        //perlindungan="---";
         strcpy(perlindungan, "---");
         amn.harga2=amn.harga1;
         break;
