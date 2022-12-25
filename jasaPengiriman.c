@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <string.h>
+#include <time.h>
 
 struct pelanggan {
 
 char nama[100];
 char alamat[100];
-int telp[13];
-} pel;
+char nama2[100];
+char alamat2[100];
+};
 
 struct barang{
 
+int berat;
 int harga;
 int jarak;
 }brg;
@@ -22,249 +24,409 @@ int harga1;
 int harga2;
 } amn;
 
-struct penerima{
+struct pilih{
 
-char nama[50];
-char alamat[50];
-int telp[13];
-} penerima;
+char barang;
+char perlindungan;
+char metyar; //metode bayar
+char bank; // pilihan bank untuk opsi atm atau debit
+};
 
-void dps();
-void badung();
-void singaraja();
-void bangli();
+main();
 
-void Domisili(){
+void cobaLagi(){
+
+char pilih;
+
+printf("=============================== \n");
+printf("Apakah ingin mencoba lagi?");
+scanf("%s", &pilih);
+
+if(pilih=='y'){
+main();
+}else if(pilih!='y'){
+printf("oke \n");
+}else{
+printf("salah \n");
+}
+
+}
+
+void infoBarang(){
 
     int pilih;
+    char *detail;
 
     printf("====================================================\n");
-    printf("||                 D O M I S I L I                ||\n");
+    printf("||               I N F O   B A R A N G            ||\n");
     printf("====================================================\n");
-    printf("|| 1. DENPASAR                                    ||\n");
-    printf("|| 2. BADUNG                                      ||\n");
-    printf("|| 3. SINGARAJA                                   ||\n");
-    printf("|| 4. BANGLI                                      ||\n");
+    printf("|| 1. PAKAIAN                                     ||\n");
+    printf("|| 2. MAKANAN                                     ||\n");
+    printf("|| 3. BUKU                                        ||\n");
+    printf("|| 4. DOKUMEN                                     ||\n");
+    printf("|| 5. OBAT                                        ||\n");
+    printf("|| 5. LAINNYA                                     ||\n");
     printf("====================================================\n");
+    printf(" MASUKAN PILIHAN ANDA: ");
     scanf("%d", &pilih);
-    system("clear || cls");
+    fflush(stdin);
 
     if(pilih==1){
-        dps();
-        printf("Bayar Rp %d \n", brg.harga);
+        detail="PAKAIAN";
     }else if(pilih==2){
-        badung();
-        printf("%d \n", brg.harga);
+        detail="MAKANAN";
     }else if(pilih==3){
-        singaraja();
-        printf("%d \n", brg.harga);
+       detail="BUKU";
     }else if(pilih==4){
-        bangli();
-        printf("%d\n", brg.harga);
+        detail="DOKUMEN";
+    }else if(pilih==5){
+        printf("Paketnya berupa apa?\n");
+        scanf("%[ \n]", &detail);
     }
 }
 
+void kirimReguler(){
 
-void dps(){
 
-     int pilih;
-     char domisili[]="DENPASAR";
+if(brg.berat <= 5){
+    brg.harga= (brg.berat * 1000);
 
-    printf("====================================================\n");
-    printf("|| DOMISILI YANG DITUJU?                          ||\n");
-    printf("||                                                ||\n");
-    printf("|| 1. BADUNG                                      ||\n");
-    printf("|| 2. SINGARAJA                                   ||\n");
-    printf("|| 3. BANGLI                                      ||\n");
-    printf("||                                                ||\n");
-    printf("====================================================\n");
-    scanf("%d", &pilih);
-    system("clear || cls");
-
-    if(pilih==1){
-
-        char tujuan[]="BADUNG";
-        brg.jarak=12;
-        brg.harga= brg.jarak * 2000;
-
-    }else if(pilih==2){
-
-        char tujuan[]="SINGARAJA";
-        brg.jarak=50;
-        brg.harga=brg.jarak * 2000;
-
-    }else if(pilih==3){
-
-        char tujuan[]="BANGLI";
-        brg.jarak= 25;
-        brg.harga=brg.jarak * 2000;
-
+}else if(brg.berat>5){
+    int temp= (brg.berat % 5);
+    if(temp==0){
+        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 5000;
     }else{
-
-        printf(" DATA YANG ANDA MASUKAN TIDAK ADA \n");
-        dps();
+        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 5000;
     }
 }
+}
+void kirimCepat(){
 
-void badung(){
+if(brg.berat <= 5){
+    brg.harga= ((brg.berat*5)/ brg.berat * 8000);
 
-     int pilih;
-     char domisili[]="BADUNG";
-
-    printf("====================================================\n");
-    printf("|| DOMISILI YANG DITUJU?                          ||\n");
-    printf("||                                                ||\n");
-    printf("|| 1. DENPASAR                                    ||\n");
-    printf("|| 2. SINGARAJA                                   ||\n");
-    printf("|| 3. BANGLI                                      ||\n");
-    printf("||                                                ||\n");
-    printf("====================================================\n");
-    scanf("%d", &pilih);
-    system("clear || cls");
-
-    if(pilih==1){
-
-        char tujuan[]="DENPASAR";
-        brg.jarak=12;
-        brg.harga= brg.jarak * 2000;
-
-    }else if(pilih==2){
-
-        char tujuan[]="SINGARAJA";
-        brg.jarak=69;
-        brg.harga=brg.jarak * 2000;
-
-    }else if(pilih==3){
-
-        char tujuan[]="BANGLI";
-        brg.jarak= 36;
-        brg.harga=brg.jarak * 2000;
-
+}else if(brg.berat>5){
+    int temp= (brg.berat % 5);
+    if(temp==0){
+        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 8000;
     }else{
-
-        printf(" DATA YANG ANDA MASUKAN TIDAK ADA \n");
-        badung();
+        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 8000;
     }
+
 }
-
-void singaraja(){
-
-     int pilih;
-     char domisili[]="SINGARAJA";
-
-    printf("====================================================\n");
-    printf("|| DOMISILI YANG DITUJU?                          ||\n");
-    printf("||                                                ||\n");
-    printf("|| 1. DENPASAR                                    ||\n");
-    printf("|| 2. BADUNG                                      ||\n");
-    printf("|| 3. BANGLI                                      ||\n");
-    printf("||                                                ||\n");
-    printf("====================================================\n");
-    scanf("%d", &pilih);
-    system("clear || cls");
-
-    if(pilih==1){
-
-        char tujuan[]="DENPASAR";
-        brg.jarak=50;
-        brg.harga= brg.jarak * 2000;
-
-    }else if(pilih==2){
-
-        char tujuan[]="BADUNG";
-        brg.jarak=69;
-        brg.harga=brg.jarak * 2000;
-
-    }else if(pilih==3){
-
-        char tujuan[]="BANGLI";
-        brg.jarak= 73;
-        brg.harga=brg.jarak * 2000;
-
-    }else{
-
-        printf(" DATA YANG ANDA MASUKAN TIDAK ADA \n");
-        singaraja();
-    }
-}
-
-void bangli(){
-
-     int pilih;
-     char domisili[]="BANGLI";
-
-    printf("====================================================\n");
-    printf("|| DOMISILI YANG DITUJU?                          ||\n");
-    printf("||                                                ||\n");
-    printf("|| 1. DENPASAR                                    ||\n");
-    printf("|| 2. BADUNG                                      ||\n");
-    printf("|| 3. SINGARAJA                                   ||\n");
-    printf("||                                                ||\n");
-    printf("====================================================\n");
-    scanf("%d", &pilih);
-    system("clear || cls");
-
-    if(pilih==1){
-
-        char tujuan[]="DENPASAR";
-        brg.jarak=40;
-        brg.harga= brg.jarak * 2000;
-
-    }else if(pilih==2){
-
-        char tujuan[]="BADUNG";
-        brg.jarak=34;
-        brg.harga=brg.jarak * 2000;
-
-    }else if(pilih==3){
-
-        char tujuan[]="SINGARAJA";
-        brg.jarak= 73;
-        brg.harga=brg.jarak * 2000;
-
-    }else{
-
-        printf(" DATA YANG ANDA MASUKAN TIDAK ADA \n");
-        bangli();
-    }
 }
 
 
+void dataPengirim(){
+
+struct pelanggan pel;
+
+printf("====================================================\n");
+printf("                     DATA  PENGIRIM                 \n");
+printf("====================================================\n");
+printf("Nama: ");
+scanf("%[^ \n]", pel.nama);
+fflush(stdin);
+printf("Alamat: ");
+scanf("%[^ \n]", pel.alamat);
+fflush(stdin);
+system("clear || cls");
+}
 
 void dataPenerima(){
 
-    printf("====================================================\n");
-    printf("||            D A T A   P E N E R I M A           ||\n");
-    printf("====================================================\n");
-    printf(" Nama Penerima: ");
-    scanf("%[ \n]", &penerima.nama);
-    fflush(stdin);
-    printf("\n");
-    printf(" Nomor Telepon: ");
-    scanf("%d", penerima.telp);
-    fflush(stdin);
-    system("clear || cls");
+struct pelanggan pel;
+
+printf("====================================================\n");
+printf("                     DATA  PENERIMA                 \n");
+printf("====================================================\n");
+printf("Nama: ");
+scanf("%[^ \n]", pel.nama2);
+fflush(stdin);
+printf("Alamat: ");
+scanf("%[^ \n]", pel.alamat2);
+fflush(stdin);
+system("clear || cls");
+}
+
+void pengaman(){
+
+int pilih;
+int hasil;
+
+printf("====================================================\n");
+printf("|| PILIH PERLINDUNGAN EKSTRA?                     ||\n");
+printf("||                                                ||\n");
+printf("|| 1. PERLINDUNGAN SILVER             (+ Rp1000)  ||\n");
+printf("|| 2. PERLINDUNGAN GOLD               (+ Rp2000)  ||\n");
+printf("|| 3. PERLINDUNGAN PLATINUM           (+ Rp4000)  ||\n");
+printf("|| 4. NGGA DULU DEH                               ||\n");
+printf("====================================================\n");
+printf(" MASUKAN PILIHAN: ");
+scanf("%d", &pilih);
+fflush(stdin);
+    
+switch(pilih){
+
+    case 1:
+        amn.harga1=brg.harga + 1000;
+        fflush(stdin);
+
+    case 2:
+        amn.harga1= brg.harga + 2000;
+        fflush(stdin);
+        
+    case 3:
+        amn.harga1=brg.harga + 4000;
+        
+    default:
+        printf("SALAH \n");
+
 
 }
 
+}
 
-void dataPelanggan(){
+void berat(){
+    
+printf("====================================================\n");
+printf("Berat total barang (kg): ");
+scanf("%d", &brg.berat);
+system("clear || cls");
 
+kirimReguler();
+kirimCepat();
+}
 
-    printf("====================================================\n");
-    printf("||              S E N D E R    D A T A            ||\n");
-    printf("====================================================\n");
-    printf(" Order Atas Nama: ");
-    scanf("%[^ \n]", pel.nama);
+void jarak(){
+
+printf("====================================================\n");
+printf("Masukan Jarak Pengiriman (km): ");
+scanf("%d", &brg.jarak);
+system("clear || cls");
+
+if(brg.jarak<=5){
+
+amn.harga2= amn.harga1 + 3000;
+fflush(stdin);
+
+}else if(brg.jarak>5){
+    int temp= (brg.jarak % 5);
+    if(temp==0){
+        amn.harga2= amn.harga1 + 15000;
+        fflush(stdin);
+    }else{
+        amn.harga2= amn.harga1+ 15000;
+        fflush(stdin);
+    }
+}
+}
+
+int timer(){
+     
     fflush(stdin);
-    printf("\n");
-    printf("Nomor Telpon: ");
-    scanf("%d", pel.telp);
-    fflush(stdin);
-    system("clear || cls");
+    unsigned int x_hours=0;
+    unsigned int x_minutes=0;
+    unsigned int x_seconds=0;
+    unsigned int x_milliseconds=0;
+    unsigned int count_down_time_in_secs=0,time_left=0;
+
+    clock_t x_startTime,x_countTime;
+    count_down_time_in_secs=10;  // 1 minute is 60, 1 hour is 3600
+
+ 
+    x_startTime=clock();  // start clock
+    time_left=count_down_time_in_secs-x_seconds;   // update timer
+
+    while (time_left>0)
+    {
+        x_countTime=clock(); // update timer difference
+        x_milliseconds=x_countTime-x_startTime;
+        x_seconds=(x_milliseconds/(CLOCKS_PER_SEC))-(x_minutes*60);
+        x_minutes=(x_milliseconds/(CLOCKS_PER_SEC))/60;
+        x_hours=x_minutes/60;
+        time_left=count_down_time_in_secs-x_seconds; // subtract to get difference
+
+printf( "\nYou have %d seconds left ( %d ) count down timer by TopCoder",time_left,count_down_time_in_secs);
+    }
+
+
+    printf( "\n\n\nTime's out\n\n\n");
+
+return 0;
+}
+
+void menuBCA(){
+
+printf("====================================================\n");
+printf("| BANK BCA                                         |\n");
+printf("====================================================\n");
+printf("| NO REKENING:                                     |\n");
+printf("| 0403288664                                       |\n");
+printf("----------------------------------------------------\n");
+printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
+timer();
+fflush(stdin);
+printf("----------------------------------------------------\n");
+printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
+getchar();
+
+}
+
+void menuBNI(){
+
+printf("====================================================\n");
+printf("| BANK BNI                                         |\n");
+printf("====================================================\n");
+printf("| NO REKENING:                                     |\n");
+printf("| 0778193597                                       |\n");
+printf("----------------------------------------------------\n");
+printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
+timer();
+fflush(stdin);
+printf("----------------------------------------------------\n");
+printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
+getchar();
+}
+
+void menuMandiri(){
+
+printf("====================================================\n");
+printf("| BANK MANDIRI                                     |\n");
+printf("====================================================\n");
+printf("| NO REKENING:                                     |\n");
+printf("| 0403288664                                       |\n");
+printf("----------------------------------------------------\n");
+printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
+timer();
+fflush(stdin);
+printf("----------------------------------------------------\n");
+printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
+getchar();
+}
+
+void menuBRI(){
+
+printf("====================================================\n");
+printf("| BANK BRI                                         |\n");
+printf("====================================================\n");
+printf("| NO REKENING:                                     |\n");
+printf("| 0403288664                                       |\n");
+printf("----------------------------------------------------\n");
+printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
+timer();
+fflush(stdin);
+printf("----------------------------------------------------\n");
+printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
+getchar();
+}
+
+
+void atm(){
+
+int pilih;
+
+printf("=================== METODE BAYAR ===================\n");
+printf("|| 1. BCA                                         ||\n");
+printf("|| 2. BNI                                         ||\n");
+printf("|| 3. MANDIRI                                     ||\n");
+printf("|| 4. BRI                                         ||\n");
+printf("====================================================\n");
+scanf("%d", &pilih);
+switch(pilih){
+
+    case 1:
+    menuBCA();
+    timer();
+    printf("====================================================\n");
+    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    getchar();
+    break;
+
+    case 2:
+    menuBNI();
+    timer();
+    printf("====================================================\n");
+    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    getchar();
+    break;
+
+    case 3:
+    menuMandiri();
+    timer();
+    printf("====================================================\n");
+    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    getchar();
+    break;
+
+    case 4:
+    //menuBRI();
+    timer();
+    printf("====================================================\n");
+    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    getchar();
+    break;
+
+    default:
+    printf("INPUT YANG ANDA MASUKAN TIDAK VALID \n");
+    getchar();
+    atm();
+    break;
+}
+}
+
+void metodeBayar(){
+
+int pilih;
+int hasil;
+
+printf("=================== METODE BAYAR ===================\n");
+printf("|| 1. TUNAI                                       ||\n");
+printf("|| 2. ATM                                         ||\n");
+printf("|| 3. PAY LATER                                   ||\n");
+printf("====================================================\n");
+printf("MASUKAN PILIHAN: ");
+scanf("%d", &pilih);
+
+switch(pilih){
+
+    case 1:
+    printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
+    break;
+
+    case 2:
+    atm();
+    break;
+
+    case 3:
+    hasil= amn.harga2 / 4;
+    printf("Lunaskan dalam 4 bulan dengan membayar Rp %d /bulan \n", hasil);
+    break;
+
+    default:
+    printf("salah \n");
+    metodeBayar();
+    
+}
+
+
+}
+
+void menu(){
+
+infoBarang();
+dataPengirim();
+dataPenerima();
+berat();
+jarak();
+kirimReguler();
+pengaman();
+metodeBayar();
+cobaLagi();
+
 }
 
 int main(){
     
-    Domisili();
+    menu();
 }
