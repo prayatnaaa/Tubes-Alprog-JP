@@ -32,36 +32,40 @@ char metyar; //metode bayar
 char bank; // pilihan bank untuk opsi atm atau debit
 };
 
+struct pelanggan pel;
+struct barang brg;
+struct aman amn;
+char detail[100];
+char perlindungan[100];
+
 main();
 
-void resi(char nama[100], char alamat[100], char nama2[100], char alamat2[100], char *detail, char *perlindungan, int berat, int jarak, int harga){
-
-struct pelanggan pel;
+void resi(){
 
 fflush(stdin);
     printf("====================================================\n");
     printf("||------------------- PENGIRIM -------------------||\n");
     printf("====================================================\n");
-    printf("Nama  : %s                                \n", pel.nama);
-    printf("Alamat: %s                                \n", pel.alamat);
+    printf("Nama  : %s                                          \n", pel.nama);
+    printf("Alamat: %s                                          \n", pel.alamat);
     printf("====================================================\n");
     printf("||------------------- PENERIMA -------------------||\n");
     printf("====================================================\n");
-    printf("Nama  : %s                                \n", pel.nama2);
-    printf("Alamat: %s                                \n", pel.alamat2);
+    printf("Nama  : %s                                          \n", pel.nama2);
+    printf("Alamat: %s                                          \n", pel.alamat2);
     printf("====================================================\n");
     printf("====================================================\n");
-    printf("DETAIL BARANG: %s                         \n", detail);
-    printf("PERLINDUNGAN EKSTRA: %s                   \n", perlindungan);
+    printf("DETAIL BARANG: %s                                   \n", detail);
+    printf("PERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
     printf("====================================================\n");
     printf("====================================================\n");
-    printf("BERAT TOTAL BARANG: %d                    \n", brg.berat);
-    printf("JARAK TOTAL BARANG: %d                    \n", brg.jarak);
+    printf("BERAT TOTAL BARANG: %d KG                           \n", brg.berat);
+    printf("JARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
     printf("====================================================\n");
     printf("====================================================\n");
-    printf("TOTAL: Rp%d                               \n", amn.harga2);
+    printf("TOTAL: Rp%d                                         \n", amn.harga2);
     printf("====================================================\n");
-    printf("PRESS ANY KEY TO CONTINUE.....\n");
+    printf("PRESS ENTER TO CONTINUE.....\n");
     getchar();
 }
 
@@ -69,13 +73,13 @@ void cobaLagi(){
 
 int pilih;
 
-    printf("\t\t======== APAKAH INGIN MEMBUAT PESANAN LAGI? ========\n");
-    printf("\t\t|                                                  |\n");
-    printf("\t\t| 1. YA                                            |\n");
-    printf("\t\t| 2. TIDAK                                         |\n");
-    printf("\t\t|                                                  |\n");
-    printf("\t\t====================================================\n");
-    printf("\t\tMASUKAN PILIHAN ANDA: ");
+    printf("======== APAKAH INGIN MEMBUAT PESANAN LAGI? ========\n");
+    printf("|                                                  |\n");
+    printf("| 1. YA                                            |\n");
+    printf("| 2. TIDAK                                         |\n");
+    printf("|                                                  |\n");
+    printf("====================================================\n");
+    printf("MASUKAN PILIHAN ANDA: ");
     scanf("%d", &pilih);
     switch(pilih){
 
@@ -84,12 +88,19 @@ int pilih;
         break;
 
         case 2:
-        printf("\t\t====================================================\n");
-        printf("\t\t|-------------------TERIMAKASIH--------------------|\n");
-        printf("\t\t|                                                  |\n");
-        printf("\t\t|                  BY:  PRAYATNA                   |\n");
-        printf("\t\t|                       DANU                       |\n");
-        printf("\t\t====================================================\n");
+        printf("====================================================\n");
+        printf("|-------------------TERIMAKASIH--------------------|\n");
+        printf("|                                                  |\n");
+        printf("|                  BY:  PRAYATNA                   |\n");
+        printf("|                       DANU                       |\n");
+        printf("====================================================\n");
+        break;
+
+        default:
+
+        printf("MOHON MASUKAN INPUT DENGAN BENAR!");
+        cobaLagi();
+        break;
     }
 
 }
@@ -97,7 +108,6 @@ int pilih;
 void infoBarang(){
 
     int pilih;
-    char *detail;
 
     printf("====================================================\n");
     printf("||               I N F O   B A R A N G            ||\n");
@@ -114,13 +124,17 @@ void infoBarang(){
     fflush(stdin);
 
     if(pilih==1){
-        detail="PAKAIAN";
+        //detail="PAKAIAN";
+        strcpy(detail, "PAKAIAN");
     }else if(pilih==2){
-        detail="MAKANAN";
+        //detail="MAKANAN";
+        strcpy(detail, "MAKANAN");
     }else if(pilih==3){
-       detail="BUKU";
+       //detail="BUKU";
+       strcpy(detail, "BUKU");
     }else if(pilih==4){
-        detail="DOKUMEN";
+        //detail="DOKUMEN";
+        strcpy(detail, "DOKUMEN");
     }else if(pilih==5){
         printf("Paketnya berupa apa?\n");
         scanf(" %[ \n]", &detail);
@@ -132,21 +146,19 @@ void kirimReguler(){
 
 
 if(brg.berat <= 5){
-    brg.harga= ((brg.berat*5)/ brg.berat * 2000);
+    brg.harga= ((brg.berat*5)/ brg.berat * 1000);
 
 }else if(brg.berat>5){
     int temp= (brg.berat % 5);
     if(temp==0){
-        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 5000;
+        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 1000;
     }else{
-        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 5000;
+        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 1000;
     }
 }
 }
 
 void dataPengirim(){
-
-struct pelanggan pel;
 
 printf("====================================================\n");
 printf("                     DATA  PENGIRIM                 \n");
@@ -161,8 +173,6 @@ system("clear || cls");
 }
 
 void dataPenerima(){
-
-struct pelanggan pel;
 
 printf("====================================================\n");
 printf("                     DATA  PENERIMA                 \n");
@@ -185,8 +195,6 @@ if(strcmp(pel.alamat, pel.alamat2)==0){
 void pengaman(){
 
 int pilih;
-int hasil;
-char *perlindungan;
 
 printf("====================================================\n");
 printf("|| PILIH PERLINDUNGAN EKSTRA?                     ||\n");
@@ -198,31 +206,34 @@ printf("|| 4. NGGA DULU DEH                               ||\n");
 printf("====================================================\n");
 printf(" MASUKAN PILIHAN: ");
 scanf("%d", &pilih);
-getchar();
 system("clear || cls");
 fflush(stdin);
     
 switch(pilih){
 
     case 1:
-        perlindungan="SILVER";
+        //perlindungan="SILVER";
+        strcpy(perlindungan, "SILVER");
         amn.harga2=amn.harga1 + 1000;
         fflush(stdin);
         break;
 
     case 2:
-        perlindungan="GOLD";
+        //perlindungan="GOLD";
+        strcpy(perlindungan, "GOLD");
         amn.harga2= amn.harga1 + 2000;
         fflush(stdin);
         break;
         
     case 3:
-        perlindungan="PLATINUM";
+        //perlindungan="PLATINUM";
+        strcpy(perlindungan, "PLATINUM");
         amn.harga2=amn.harga1 + 4000;
         fflush(stdin);
 
     case 4:
-        perlindungan="---";
+        //perlindungan="---";
+        strcpy(perlindungan, "---");
         amn.harga2=amn.harga1;
         break;
         
@@ -253,7 +264,7 @@ scanf("%d", &brg.jarak);
 system("clear || cls");
 
 if(brg.jarak<=5){
-    amn.harga1= ((brg.harga*5)/ brg.harga * 3000);
+    amn.harga1= brg.harga + 2000;
     fflush(stdin);
 
 }else if(brg.jarak>5){
@@ -266,40 +277,6 @@ if(brg.jarak<=5){
         fflush(stdin);
     }
 }
-}
-
-int timer(){
-     
-    fflush(stdin);
-    unsigned int x_hours=0;
-    unsigned int x_minutes=0;
-    unsigned int x_seconds=0;
-    unsigned int x_milliseconds=0;
-    unsigned int count_down_time_in_secs=0,time_left=0;
-
-    clock_t x_startTime,x_countTime;
-    count_down_time_in_secs=10;  // 1 minute is 60, 1 hour is 3600
-
- 
-    x_startTime=clock();  // start clock
-    time_left=count_down_time_in_secs-x_seconds;   // update timer
-
-    while (time_left>0)
-    {
-        x_countTime=clock(); // update timer difference
-        x_milliseconds=x_countTime-x_startTime;
-        x_seconds=(x_milliseconds/(CLOCKS_PER_SEC))-(x_minutes*60);
-        x_minutes=(x_milliseconds/(CLOCKS_PER_SEC))/60;
-        x_hours=x_minutes/60;
-        time_left=count_down_time_in_secs-x_seconds; // subtract to get difference
-
-printf( "\nYou have %d seconds left ( %d ) count down timer by TopCoder",time_left,count_down_time_in_secs);
-    }
-
-
-    printf( "\n\n\nTime's out\n\n\n");
-
-return 0;
 }
 
 void menuBCA(){
@@ -444,9 +421,6 @@ switch(pilih){
 
 void menu(){
 
-struct pelanggan pel;
-char *detail;
-char *perlindungan;
 infoBarang();
 dataPengirim();
 dataPenerima();
@@ -455,7 +429,7 @@ jarak();
 kirimReguler();
 pengaman();
 metodeBayar();
-resi(pel.nama, pel.alamat, pel.nama2, pel.alamat2, detail, perlindungan, brg.berat, brg.jarak, brg.harga);
+resi();
 cobaLagi();
 }
 
