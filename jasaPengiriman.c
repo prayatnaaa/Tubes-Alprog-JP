@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <string.h>
 #include <time.h>
 
 struct pelanggan {
@@ -34,21 +34,63 @@ char bank; // pilihan bank untuk opsi atm atau debit
 
 main();
 
+void resi(char nama[100], char alamat[100], char nama2[100], char alamat2[100], char *detail, char *perlindungan, int berat, int jarak, int harga){
+
+struct pelanggan pel;
+
+fflush(stdin);
+    printf("====================================================\n");
+    printf("||------------------- PENGIRIM -------------------||\n");
+    printf("====================================================\n");
+    printf("Nama  : %s                                \n", pel.nama);
+    printf("Alamat: %s                                \n", pel.alamat);
+    printf("====================================================\n");
+    printf("||------------------- PENERIMA -------------------||\n");
+    printf("====================================================\n");
+    printf("Nama  : %s                                \n", pel.nama2);
+    printf("Alamat: %s                                \n", pel.alamat2);
+    printf("====================================================\n");
+    printf("====================================================\n");
+    printf("DETAIL BARANG: %s                         \n", detail);
+    printf("PERLINDUNGAN EKSTRA: %s                   \n", perlindungan);
+    printf("====================================================\n");
+    printf("====================================================\n");
+    printf("BERAT TOTAL BARANG: %d                    \n", brg.berat);
+    printf("JARAK TOTAL BARANG: %d                    \n", brg.jarak);
+    printf("====================================================\n");
+    printf("====================================================\n");
+    printf("TOTAL: Rp%d                               \n", amn.harga2);
+    printf("====================================================\n");
+    printf("PRESS ANY KEY TO CONTINUE.....\n");
+    getchar();
+}
+
 void cobaLagi(){
 
-char pilih;
+int pilih;
 
-printf("=============================== \n");
-printf("Apakah ingin mencoba lagi?");
-scanf("%s", &pilih);
+    printf("\t\t======== APAKAH INGIN MEMBUAT PESANAN LAGI? ========\n");
+    printf("\t\t|                                                  |\n");
+    printf("\t\t| 1. YA                                            |\n");
+    printf("\t\t| 2. TIDAK                                         |\n");
+    printf("\t\t|                                                  |\n");
+    printf("\t\t====================================================\n");
+    printf("\t\tMASUKAN PILIHAN ANDA: ");
+    scanf("%d", &pilih);
+    switch(pilih){
 
-if(pilih=='y'){
-main();
-}else if(pilih!='y'){
-printf("oke \n");
-}else{
-printf("salah \n");
-}
+        case 1:
+        main();
+        break;
+
+        case 2:
+        printf("\t\t====================================================\n");
+        printf("\t\t|-------------------TERIMAKASIH--------------------|\n");
+        printf("\t\t|                                                  |\n");
+        printf("\t\t|                  BY:  PRAYATNA                   |\n");
+        printf("\t\t|                       DANU                       |\n");
+        printf("\t\t====================================================\n");
+    }
 
 }
 
@@ -67,7 +109,7 @@ void infoBarang(){
     printf("|| 5. OBAT                                        ||\n");
     printf("|| 5. LAINNYA                                     ||\n");
     printf("====================================================\n");
-    printf(" MASUKAN PILIHAN ANDA: ");
+    printf("MASUKAN PILIHAN ANDA: ");
     scanf("%d", &pilih);
     fflush(stdin);
 
@@ -81,7 +123,8 @@ void infoBarang(){
         detail="DOKUMEN";
     }else if(pilih==5){
         printf("Paketnya berupa apa?\n");
-        scanf("%[ \n]", &detail);
+        scanf(" %[ \n]", &detail);
+        fflush(stdin);
     }
 }
 
@@ -89,7 +132,7 @@ void kirimReguler(){
 
 
 if(brg.berat <= 5){
-    brg.harga= (brg.berat * 1000);
+    brg.harga= ((brg.berat*5)/ brg.berat * 2000);
 
 }else if(brg.berat>5){
     int temp= (brg.berat % 5);
@@ -100,22 +143,6 @@ if(brg.berat <= 5){
     }
 }
 }
-void kirimCepat(){
-
-if(brg.berat <= 5){
-    brg.harga= ((brg.berat*5)/ brg.berat * 8000);
-
-}else if(brg.berat>5){
-    int temp= (brg.berat % 5);
-    if(temp==0){
-        brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 8000;
-    }else{
-        brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 8000;
-    }
-
-}
-}
-
 
 void dataPengirim(){
 
@@ -147,12 +174,19 @@ printf("Alamat: ");
 scanf("%[^ \n]", pel.alamat2);
 fflush(stdin);
 system("clear || cls");
+
+if(strcmp(pel.alamat, pel.alamat2)==0){
+    printf("ALAMAT YANG ANDA MASUKAN SAMA! \n");
+    printf("MOHON PASTIKAN DATA BENAR \n");
+    dataPenerima();
+}
 }
 
 void pengaman(){
 
 int pilih;
 int hasil;
+char *perlindungan;
 
 printf("====================================================\n");
 printf("|| PILIH PERLINDUNGAN EKSTRA?                     ||\n");
@@ -164,23 +198,37 @@ printf("|| 4. NGGA DULU DEH                               ||\n");
 printf("====================================================\n");
 printf(" MASUKAN PILIHAN: ");
 scanf("%d", &pilih);
+getchar();
+system("clear || cls");
 fflush(stdin);
     
 switch(pilih){
 
     case 1:
-        amn.harga1=brg.harga + 1000;
+        perlindungan="SILVER";
+        amn.harga2=amn.harga1 + 1000;
         fflush(stdin);
+        break;
 
     case 2:
-        amn.harga1= brg.harga + 2000;
+        perlindungan="GOLD";
+        amn.harga2= amn.harga1 + 2000;
         fflush(stdin);
+        break;
         
     case 3:
-        amn.harga1=brg.harga + 4000;
+        perlindungan="PLATINUM";
+        amn.harga2=amn.harga1 + 4000;
+        fflush(stdin);
+
+    case 4:
+        perlindungan="---";
+        amn.harga2=amn.harga1;
+        break;
         
     default:
         printf("SALAH \n");
+        pengaman();
 
 
 }
@@ -195,7 +243,6 @@ scanf("%d", &brg.berat);
 system("clear || cls");
 
 kirimReguler();
-kirimCepat();
 }
 
 void jarak(){
@@ -206,17 +253,16 @@ scanf("%d", &brg.jarak);
 system("clear || cls");
 
 if(brg.jarak<=5){
-
-amn.harga2= amn.harga1 + 3000;
-fflush(stdin);
+    amn.harga1= ((brg.harga*5)/ brg.harga * 3000);
+    fflush(stdin);
 
 }else if(brg.jarak>5){
     int temp= (brg.jarak % 5);
     if(temp==0){
-        amn.harga2= amn.harga1 + 15000;
+        amn.harga1= (brg.jarak/5) * ((brg.harga*5)/brg.harga) * 3000;
         fflush(stdin);
     }else{
-        amn.harga2= amn.harga1+ 15000;
+        amn.harga1= ((brg.jarak/5)+1) * ((brg.harga*5)/brg.harga) * 3000;
         fflush(stdin);
     }
 }
@@ -265,11 +311,7 @@ printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
 printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-timer();
 fflush(stdin);
-printf("----------------------------------------------------\n");
-printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
-getchar();
 
 }
 
@@ -282,11 +324,7 @@ printf("| NO REKENING:                                     |\n");
 printf("| 0778193597                                       |\n");
 printf("----------------------------------------------------\n");
 printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-timer();
 fflush(stdin);
-printf("----------------------------------------------------\n");
-printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
-getchar();
 }
 
 void menuMandiri(){
@@ -298,11 +336,7 @@ printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
 printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-timer();
 fflush(stdin);
-printf("----------------------------------------------------\n");
-printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
-getchar();
 }
 
 void menuBRI(){
@@ -314,11 +348,7 @@ printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
 printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-timer();
 fflush(stdin);
-printf("----------------------------------------------------\n");
-printf("TEKAN KEYWORD MANAPUN JIKA TELAH MELAKUKAN PEMBAYARAN\n");
-getchar();
 }
 
 
@@ -337,7 +367,7 @@ switch(pilih){
 
     case 1:
     menuBCA();
-    timer();
+    fflush(stdin);
     printf("====================================================\n");
     printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
     getchar();
@@ -345,7 +375,7 @@ switch(pilih){
 
     case 2:
     menuBNI();
-    timer();
+    fflush(stdin);
     printf("====================================================\n");
     printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
     getchar();
@@ -353,15 +383,15 @@ switch(pilih){
 
     case 3:
     menuMandiri();
-    timer();
+    fflush(stdin);
     printf("====================================================\n");
     printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
     getchar();
     break;
 
     case 4:
-    //menuBRI();
-    timer();
+    menuBRI();
+    fflush(stdin);
     printf("====================================================\n");
     printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
     getchar();
@@ -414,6 +444,9 @@ switch(pilih){
 
 void menu(){
 
+struct pelanggan pel;
+char *detail;
+char *perlindungan;
 infoBarang();
 dataPengirim();
 dataPenerima();
@@ -422,11 +455,13 @@ jarak();
 kirimReguler();
 pengaman();
 metodeBayar();
+resi(pel.nama, pel.alamat, pel.nama2, pel.alamat2, detail, perlindungan, brg.berat, brg.jarak, brg.harga);
 cobaLagi();
-
 }
 
 int main(){
     
     menu();
+
+    return 0;
 }
