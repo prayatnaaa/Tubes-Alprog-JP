@@ -16,20 +16,12 @@ struct barang{
 int berat;
 int harga;
 int jarak;
-}brg;
+};
 
 struct aman{
 
 int harga1;
 int harga2;
-} amn;
-
-struct pilih{
-
-char barang;
-char perlindungan;
-char metyar; //metode bayar
-char bank; // pilihan bank untuk opsi atm atau debit
 };
 
 struct pelanggan pel;
@@ -42,7 +34,6 @@ main();
 
 void resi(){
 
-fflush(stdin);
     printf("====================================================\n");
     printf("||------------------- PENGIRIM -------------------||\n");
     printf("====================================================\n");
@@ -81,6 +72,7 @@ int pilih;
     printf("====================================================\n");
     printf("MASUKAN PILIHAN ANDA: ");
     scanf("%d", &pilih);
+    system("clear || cls");
     switch(pilih){
 
         case 1:
@@ -108,7 +100,9 @@ int pilih;
 void infoBarang(){
 
     int pilih;
+    char barang[100];
 
+    system("clear || cls");
     printf("====================================================\n");
     printf("||               I N F O   B A R A N G            ||\n");
     printf("====================================================\n");
@@ -117,28 +111,30 @@ void infoBarang(){
     printf("|| 3. BUKU                                        ||\n");
     printf("|| 4. DOKUMEN                                     ||\n");
     printf("|| 5. OBAT                                        ||\n");
-    printf("|| 5. LAINNYA                                     ||\n");
+    printf("|| 6. LAINNYA                                     ||\n");
     printf("====================================================\n");
     printf("MASUKAN PILIHAN ANDA: ");
     scanf("%d", &pilih);
     fflush(stdin);
 
     if(pilih==1){
-        //detail="PAKAIAN";
         strcpy(detail, "PAKAIAN");
     }else if(pilih==2){
-        //detail="MAKANAN";
         strcpy(detail, "MAKANAN");
     }else if(pilih==3){
-       //detail="BUKU";
        strcpy(detail, "BUKU");
     }else if(pilih==4){
-        //detail="DOKUMEN";
         strcpy(detail, "DOKUMEN");
     }else if(pilih==5){
+        strcpy(detail, "OBAT");
+    }else if(pilih==6){
         printf("Paketnya berupa apa?\n");
-        scanf(" %[ \n]", &detail);
+        scanf(" %[ \n]", &barang);
         fflush(stdin);
+        strcpy(detail, &barang);
+    }else{
+        printf("MOHON MASUKAN INPUT DENGAN BENAR \n");
+        infoBarang();
     }
 }
 
@@ -196,6 +192,7 @@ void pengaman(){
 
 int pilih;
 
+system("clear || cls");
 printf("====================================================\n");
 printf("|| PILIH PERLINDUNGAN EKSTRA?                     ||\n");
 printf("||                                                ||\n");
@@ -206,7 +203,6 @@ printf("|| 4. NGGA DULU DEH                               ||\n");
 printf("====================================================\n");
 printf(" MASUKAN PILIHAN: ");
 scanf("%d", &pilih);
-system("clear || cls");
 fflush(stdin);
     
 switch(pilih){
@@ -244,7 +240,6 @@ switch(pilih){
 
 void berat(){
     
-printf("====================================================\n");
 printf("Berat total barang (kg): ");
 scanf("%d", &brg.berat);
 system("clear || cls");
@@ -254,7 +249,6 @@ kirimReguler();
 
 void jarak(){
 
-printf("====================================================\n");
 printf("Masukan Jarak Pengiriman (km): ");
 scanf("%d", &brg.jarak);
 system("clear || cls");
@@ -283,8 +277,7 @@ printf("====================================================\n");
 printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-fflush(stdin);
+printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
 
 }
 
@@ -296,8 +289,7 @@ printf("====================================================\n");
 printf("| NO REKENING:                                     |\n");
 printf("| 0778193597                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-fflush(stdin);
+printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
 }
 
 void menuMandiri(){
@@ -308,8 +300,7 @@ printf("====================================================\n");
 printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-fflush(stdin);
+printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
 }
 
 void menuBRI(){
@@ -320,8 +311,7 @@ printf("====================================================\n");
 printf("| NO REKENING:                                     |\n");
 printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d ke No. rekening 0403288664 \n", amn.harga2);
-fflush(stdin);
+printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
 }
 
 
@@ -336,38 +326,44 @@ printf("|| 3. MANDIRI                                     ||\n");
 printf("|| 4. BRI                                         ||\n");
 printf("====================================================\n");
 scanf("%d", &pilih);
+fflush(stdin);
+system("clear || cls");
 switch(pilih){
 
     case 1:
     menuBCA();
     fflush(stdin);
     printf("====================================================\n");
-    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    printf("TEKAN ENTER UNTUK MELANJUTKAN...\n");
     getchar();
+    system("clear || cls");
     break;
 
     case 2:
     menuBNI();
     fflush(stdin);
     printf("====================================================\n");
-    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    printf("TEKAN ENTER UNTUK MELANJUTKAN...\n");
     getchar();
+    system("clear || cls");
     break;
 
     case 3:
     menuMandiri();
     fflush(stdin);
     printf("====================================================\n");
-    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    printf("TEKAN ENTER UNTUK MELANJUTKAN...\n");
     getchar();
+    system("clear || cls");
     break;
 
     case 4:
     menuBRI();
     fflush(stdin);
     printf("====================================================\n");
-    printf("TEKAN KEYWORD APA SAJA UNTUK MELANJUTKAN...\n");
+    printf("TEKAN ENTER UNTUK MELANJUTKAN...\n");
     getchar();
+    system("clear || cls");
     break;
 
     default:
@@ -390,6 +386,8 @@ printf("|| 3. PAY LATER                                   ||\n");
 printf("====================================================\n");
 printf("MASUKAN PILIHAN: ");
 scanf("%d", &pilih);
+fflush(stdin);
+system("clear || cls");
 
 switch(pilih){
 
