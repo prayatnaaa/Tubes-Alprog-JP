@@ -31,9 +31,19 @@ struct barang brg;
 struct aman amn;
 char detail[100];
 char perlindungan[100];
+int id;
 
 int main();
 
+
+void noId(){
+
+int rand_num;
+srand(time(NULL));
+rand_num = random();
+
+printf("\t\tID PENGIRIMAN: %d \n", rand_num);
+}
 void waktu(){
     time_t t = time(NULL);
   struct tm tm = *localtime(&t);
@@ -62,7 +72,37 @@ void resi(){
     printf("\t\tBERAT TOTAL BARANG: %d KG                           \n", brg.berat);
     printf("\t\tJARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
     printf("\t\t----------------------------------------------------\n");
+    noId();
+    printf("\t\t----------------------------------------------------\n");
+
+    FILE *fptr;
+    fptr=fopen("struk.txt", "wb");
+
+    fprintf(fptr, "\t\t====================================================\n");
+    fprintf(fptr, "\t\t          J A S A   P E N G I R I M AN              \n");
+    fprintf(fptr, "\t\t             P R A Y A T N A-D A N U                \n");
+    fprintf(fptr, "\t\t====================================================\n");
+    fprintf(fptr,"\t\t====================================================\n");
+    fprintf(fptr, "\t\tNAMA  PENGIRIM : %s                                          \n", pel.nama);
+    fprintf(fptr, "\t\tALAMAT PENGIRIM: %s                                          \n", pel.alamat);
+    fprintf(fptr, "\t\t----------------------------------------------------\n");
+    fprintf(fptr, "\t\tNAMA  PENERIMA : %s                                          \n", pel.nama2);
+    fprintf(fptr, "\t\tALAMAT PENERIMA: %s                                          \n", pel.alamat2);
+    fprintf(fptr, "\t\t----------------------------------------------------\n");
+    fprintf(fptr, "\t\tDETAIL BARANG      : %s                                   \n", detail);
+    fprintf(fptr, "\t\tPERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
+    fprintf(fptr, "\t\t----------------------------------------------------\n");
+    fprintf(fptr, "\t\tBERAT TOTAL BARANG: %d KG                           \n", brg.berat);
+    fprintf(fptr,"\t\tJARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
+    fprintf(fptr, "\t\t----------------------------------------------------\n");
+    fprintf(fptr, "\t\tTOTAL: RP%d                                        \n", amn.harga2);
+    fprintf(fptr, "\t\t----------------------------------------------------\n");
+
+    fclose(fptr);
+
+
 }
+
 
 
 void cobaLagi(){
@@ -93,7 +133,7 @@ int pilih;
 
         default:
 
-        printf("\t\tMOHON MASUKAN INPUT DENGAN BENAR!");
+        printf("\t\tMOHON MASUKAN INPUT DENGAN BENAR! \n");
         getchar();
         cobaLagi();
         break;
