@@ -7,8 +7,10 @@ struct pelanggan {
 
 char nama[100];
 char alamat[100];
+int telp[13];
 char nama2[100];
 char alamat2[100];
+int telp2[13];
 };
 
 struct barang{
@@ -30,40 +32,44 @@ struct aman amn;
 char detail[100];
 char perlindungan[100];
 
-main();
+int main();
+
+void waktu(){
+    time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
+  printf("TANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+  printf("JAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+}
 
 void resi(){
 
+    system("clear || cls");
     printf("====================================================\n");
-    printf("||------------------- PENGIRIM -------------------||\n");
+    printf("          J A S A   P E N G I R I M AN              \n");
+    printf("             P R A Y A T N A-D A N U                \n");
     printf("====================================================\n");
-    printf("Nama  : %s                                          \n", pel.nama);
-    printf("Alamat: %s                                          \n", pel.alamat);
+    waktu();
     printf("====================================================\n");
-    printf("||------------------- PENERIMA -------------------||\n");
-    printf("====================================================\n");
-    printf("Nama  : %s                                          \n", pel.nama2);
-    printf("Alamat: %s                                          \n", pel.alamat2);
-    printf("====================================================\n");
-    printf("====================================================\n");
-    printf("DETAIL BARANG: %s                                   \n", detail);
+    printf("NAMA  PENGIRIM : %s                                          \n", pel.nama);
+    printf("ALAMAT PENGIRIM: %s                                          \n", pel.alamat);
+    printf("----------------------------------------------------\n");
+    printf("NAMA  PENERIMA : %s                                          \n", pel.nama2);
+    printf("ALAMAT PENERIMA: %s                                          \n", pel.alamat2);
+    printf("----------------------------------------------------\n");
+    printf("DETAIL BARANG      : %s                                   \n", detail);
     printf("PERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
-    printf("====================================================\n");
-    printf("====================================================\n");
+    printf("----------------------------------------------------\n");
     printf("BERAT TOTAL BARANG: %d KG                           \n", brg.berat);
     printf("JARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
-    printf("====================================================\n");
-    printf("====================================================\n");
-    printf("TOTAL: Rp%d                                         \n", amn.harga2);
-    printf("====================================================\n");
-    printf("PRESS ENTER TO CONTINUE.....\n");
-    getchar();
+    printf("----------------------------------------------------\n");
 }
+
 
 void cobaLagi(){
 
 int pilih;
 
+    system("clear || cls");
     printf("======== APAKAH INGIN MEMBUAT PESANAN LAGI? ========\n");
     printf("|                                                  |\n");
     printf("| 1. YA                                            |\n");
@@ -81,16 +87,15 @@ int pilih;
 
         case 2:
         printf("====================================================\n");
-        printf("|-------------------TERIMAKASIH--------------------|\n");
+        printf("| TERIMAKASIH TELAH MELAKUKAN PESANAN.             |\n");
         printf("|                                                  |\n");
-        printf("|                  BY:  PRAYATNA                   |\n");
-        printf("|                       DANU                       |\n");
         printf("====================================================\n");
         break;
 
         default:
 
         printf("MOHON MASUKAN INPUT DENGAN BENAR!");
+        getchar();
         cobaLagi();
         break;
     }
@@ -129,16 +134,18 @@ void infoBarang(){
         strcpy(detail, "OBAT");
     }else if(pilih==6){
         printf("Paketnya berupa apa?\n");
-        scanf(" %[ \n]", &barang);
+        fgets(barang, 100, stdin);
+        barang[strlen(barang)-1]='\0'; //karena fgets membuat line baru sendiri, maka command ini akan mencegahnya
         fflush(stdin);
-        strcpy(detail, &barang);
+        strcpy(detail, barang);
     }else{
         printf("MOHON MASUKAN INPUT DENGAN BENAR \n");
+        getchar();
         infoBarang();
     }
 }
 
-void kirimReguler(){
+void prosesBerat(){
 
 
 if(brg.berat <= 5){
@@ -151,39 +158,52 @@ if(brg.berat <= 5){
     }else{
         brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 1000;
     }
+}else if(brg.berat<1 || brg.berat==0){
+    printf("MOHON MASUKAN BERAT DENGAN NILAI YANG BULAT \n");
+    prosesBerat();
 }
 }
 
 void dataPengirim(){
 
+system("clear || cls");
 printf("====================================================\n");
 printf("                     DATA  PENGIRIM                 \n");
 printf("====================================================\n");
-printf("Nama: ");
-scanf("%[^ \n]", pel.nama);
+printf("NAMA: ");
+fgets(pel.nama, 100, stdin);
+pel.nama[strlen(pel.nama)-1]='\0';
+printf("ALAMAT: ");
+fgets(pel.alamat, 100, stdin);
+pel.alamat[strlen(pel.alamat)-1]='\0';
+printf("NOMOR HP: ");
+scanf("%d", pel.telp);
 fflush(stdin);
-printf("Alamat: ");
-scanf("%[^ \n]", pel.alamat);
-fflush(stdin);
-system("clear || cls");
+
 }
 
 void dataPenerima(){
 
+system("clear || cls");
 printf("====================================================\n");
 printf("                     DATA  PENERIMA                 \n");
 printf("====================================================\n");
-printf("Nama: ");
-scanf("%[^ \n]", pel.nama2);
+printf("NAMA: ");
+fgets(pel.nama2, 100, stdin);
 fflush(stdin);
-printf("Alamat: ");
-scanf("%[^ \n]", pel.alamat2);
+pel.nama2[strlen(pel.nama2)-1]='\0';
+printf("ALAMAT: ");
+fgets(pel.alamat2, 100, stdin);
 fflush(stdin);
-system("clear || cls");
+pel.alamat2[strlen(pel.alamat2)-1]='\0';
+printf("NOMOR HP: ");
+scanf("%d", pel.telp2);
+fflush(stdin);
 
 if(strcmp(pel.alamat, pel.alamat2)==0){
     printf("ALAMAT YANG ANDA MASUKAN SAMA! \n");
     printf("MOHON PASTIKAN DATA BENAR \n");
+    getchar();
     dataPenerima();
 }
 }
@@ -223,6 +243,7 @@ switch(pilih){
         strcpy(perlindungan, "PLATINUM");
         amn.harga2=amn.harga1 + 4000;
         fflush(stdin);
+        break;
 
     case 4:
         strcpy(perlindungan, "---");
@@ -230,7 +251,8 @@ switch(pilih){
         break;
         
     default:
-        printf("SALAH \n");
+        printf("MOHON MASUKAN INPUT DENGAN BENAR <3 \n");
+        getchar();
         pengaman();
 
 
@@ -239,19 +261,34 @@ switch(pilih){
 }
 
 void berat(){
-    
-printf("Berat total barang (kg): ");
-scanf("%d", &brg.berat);
-system("clear || cls");
 
-kirimReguler();
+int ulang;
+
+system("clear || cls");
+printf("BERAT TOTAL BARANG (KG): ");
+scanf("%d", &brg.berat);
+
+if(brg.berat<1){
+    printf("MASUKAN BERAT DENGAN BENAR! \n");
+    getchar();
+    berat();
+        }
+
+prosesBerat();
+
 }
 
 void jarak(){
 
-printf("Masukan Jarak Pengiriman (km): ");
-scanf("%d", &brg.jarak);
 system("clear || cls");
+printf("MASUKAN JARAK PENGIRIMAN (KM): ");
+scanf("%d", &brg.jarak);
+
+if(brg.jarak<1 || brg.jarak==0){
+    printf("MASUKAN JARAK DENGAN BENAR! \n");
+    getchar();
+    jarak();
+}
 
 if(brg.jarak<=5){
     amn.harga1= brg.harga + 2000;
@@ -271,47 +308,45 @@ if(brg.jarak<=5){
 
 void menuBCA(){
 
-printf("====================================================\n");
+resi();
 printf("| BANK BCA                                         |\n");
-printf("====================================================\n");
-printf("| NO REKENING:                                     |\n");
-printf("| 0403288664                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
-
+printf("NO REKENING:                                     \n");
+printf("0403288664                                       \n");
+printf("----------------------------------------------------\n");
+printf("TOTAL Rp %d \n", amn.harga2);
 }
 
 void menuBNI(){
 
-printf("====================================================\n");
+resi();
 printf("| BANK BNI                                         |\n");
-printf("====================================================\n");
-printf("| NO REKENING:                                     |\n");
-printf("| 0778193597                                       |\n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
+printf("NO REKENING:                                     \n");
+printf("0778193597                                       \n");
+printf("----------------------------------------------------\n");
+printf("TOTAL Rp %d \n", amn.harga2);
 }
 
 void menuMandiri(){
 
-printf("====================================================\n");
+resi();
 printf("| BANK MANDIRI                                     |\n");
 printf("====================================================\n");
-printf("| NO REKENING:                                     |\n");
-printf("| 0403288664                                       |\n");
+printf("NO REKENING:                                     \n");
+printf("0403288664                                       \n");
 printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
+printf("TOTAL Rp %d \n", amn.harga2);
 }
 
 void menuBRI(){
 
-printf("====================================================\n");
+resi();
 printf("| BANK BRI                                         |\n");
 printf("====================================================\n");
-printf("| NO REKENING:                                     |\n");
-printf("| 0403288664                                       |\n");
-printf("----------------------------------------------------\n");
-printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
+printf("NO REKENING:                                     \n");
+printf("0403288664                                       \n");
+printf("TOTAL Rp %d \n", amn.harga2);
 }
 
 
@@ -325,6 +360,7 @@ printf("|| 2. BNI                                         ||\n");
 printf("|| 3. MANDIRI                                     ||\n");
 printf("|| 4. BRI                                         ||\n");
 printf("====================================================\n");
+printf("MASUKAN PILIHAN: ");
 scanf("%d", &pilih);
 fflush(stdin);
 system("clear || cls");
@@ -392,7 +428,11 @@ system("clear || cls");
 switch(pilih){
 
     case 1:
-    printf("Silahkan melakukan pembayaran sebesar Rp %d \n", amn.harga2);
+    resi();
+    printf("TOTAL: Rp%d                                         \n", amn.harga2);
+    printf("----------------------------------------------------\n");
+    printf("PRESS ENTER TO CONTINUE.....\n");
+    getchar();
     break;
 
     case 2:
@@ -401,11 +441,16 @@ switch(pilih){
 
     case 3:
     hasil= amn.harga2 / 4;
-    printf("Lunaskan dalam 4 bulan dengan membayar Rp %d /bulan \n", hasil);
+    resi();
+    printf("TOTAL: Rp%d                                         \n", amn.harga2);
+    printf("LUNASKAN DALAM 4 BULAN >> Rp%d / BULAN              \n", hasil);
+    printf("----------------------------------------------------\n");
+    printf("PRESS ENTER TO CONTINUE.....\n");
+    getchar();
     break;
 
     default:
-    printf("salah \n");
+    printf("MASUKAN INPUT DENGAN BENAR! \n");
     metodeBayar();
     
 }
@@ -420,10 +465,8 @@ dataPengirim();
 dataPenerima();
 berat();
 jarak();
-kirimReguler();
 pengaman();
 metodeBayar();
-resi();
 cobaLagi();
 }
 
