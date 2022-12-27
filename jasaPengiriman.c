@@ -69,11 +69,14 @@ void resi(){
     printf("\t\tDETAIL BARANG      : %s                                   \n", detail);
     printf("\t\tPERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
     printf("\t\t----------------------------------------------------\n");
-    printf("\t\tBERAT TOTAL BARANG: %d KG                           \n", brg.berat);
-    printf("\t\tJARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
+    printf("\t\tBERAT TOTAL BARANG    : %d KG                           \n", brg.berat);
+    printf("\t\tJARAK TOTAL PENGIRIMAN: %d KM                           \n", brg.jarak);
     printf("\t\t----------------------------------------------------\n");
     noId();
     printf("\t\t----------------------------------------------------\n");
+
+    time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
 
     FILE *fptr;
     fptr=fopen("struk.txt", "wb");
@@ -82,7 +85,6 @@ void resi(){
     fprintf(fptr, "\t\t          J A S A   P E N G I R I M AN              \n");
     fprintf(fptr, "\t\t             P R A Y A T N A-D A N U                \n");
     fprintf(fptr, "\t\t====================================================\n");
-    fprintf(fptr,"\t\t====================================================\n");
     fprintf(fptr, "\t\tNAMA  PENGIRIM : %s                                          \n", pel.nama);
     fprintf(fptr, "\t\tALAMAT PENGIRIM: %s                                          \n", pel.alamat);
     fprintf(fptr, "\t\t----------------------------------------------------\n");
@@ -92,18 +94,35 @@ void resi(){
     fprintf(fptr, "\t\tDETAIL BARANG      : %s                                   \n", detail);
     fprintf(fptr, "\t\tPERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
     fprintf(fptr, "\t\t----------------------------------------------------\n");
-    fprintf(fptr, "\t\tBERAT TOTAL BARANG: %d KG                           \n", brg.berat);
-    fprintf(fptr,"\t\tJARAK TOTAL BARANG: %d KM                           \n", brg.jarak);
+    fprintf(fptr, "\t\tBERAT TOTAL BARANG   : %d KG                           \n", brg.berat);
+    fprintf(fptr,"\t\tJARAK TOTAL PENGIRIMAN: %d KM                           \n", brg.jarak);
     fprintf(fptr, "\t\t----------------------------------------------------\n");
     fprintf(fptr, "\t\tTOTAL: RP%d                                        \n", amn.harga2);
     fprintf(fptr, "\t\t----------------------------------------------------\n");
-
+    fprintf(fptr, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+    fprintf(fptr, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+    fflush(stdin);
     fclose(fptr);
 
 
 }
 
+void tampilkanData(){
 
+char data;
+
+FILE *fptr;
+    fptr=fopen("struk.txt", "r");
+    do {
+        data = fgetc(fptr);
+        printf("%c", data);
+        fflush(stdin);
+ 
+    } while (data != EOF);
+    fflush(stdin);
+    fclose(fptr);
+        
+    }
 
 void cobaLagi(){
 
@@ -509,9 +528,34 @@ metodeBayar();
 cobaLagi();
 }
 
-int main(){
+void final(){
     
-    menu();
+    int pilih;
 
-    return 0;
+    printf("1. BUAT \n");
+    printf("2. LIHAT \n");
+scanf("%d", &pilih);
+switch(pilih){
+
+    case 1:
+    menu();
+    fflush(stdin);
+    break;
+
+    case 2:
+    tampilkanData();
+    fflush(stdin);
+    break;
+
+    default:
+    printf("MASUKAN INPUT YANG VALID \n");
+    main();
+    fflush(stdin);
+    break;
+}
+}
+
+int main(){
+
+    final();
 }
