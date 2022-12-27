@@ -31,10 +31,11 @@ struct barang brg;
 struct aman amn;
 char detail[100];
 char perlindungan[100];
-int id;
-
+char kAsal[100];
+char kTujuan[100];
 int main();
 void cobaLagi();
+void waktuSampai();
 
 void noId(){
 
@@ -72,7 +73,7 @@ void resi(){
     printf("\t\tBERAT TOTAL BARANG    : %d KG                           \n", brg.berat);
     printf("\t\tJARAK TOTAL PENGIRIMAN: %d KM                           \n", brg.jarak);
     printf("\t\t----------------------------------------------------\n");
-    noId();
+    waktuSampai();
     printf("\t\t----------------------------------------------------\n");
 
     time_t t = time(NULL);
@@ -211,22 +212,165 @@ void infoBarang(){
     }
 }
 
-void prosesBerat(){
+void kabAsal(){
 
+int pilih;
+
+printf("\t\t====================================================\n");
+printf("\t\t                 KABUPATEN PENGIRIM                 \n");
+printf("\t\t====================================================\n");
+printf("\t\t|| 1. BADUNG                                      ||\n");
+printf("\t\t|| 2. BANGLI                                      ||\n");
+printf("\t\t|| 3. BULELENG                                    ||\n");
+printf("\t\t|| 4. GIANYAR                                     ||\n");
+printf("\t\t|| 5. JEMBRANA                                    ||\n");
+printf("\t\t|| 6. KARANGASEM                                  ||\n");
+printf("\t\t|| 7. KLUNGKUNG                                   ||\n");
+printf("\t\t|| 8. TABANAN                                     ||\n");
+printf("\t\t|| 9. DENPASAR                                    ||\n");
+printf("\t\t====================================================\n");
+printf("\t\tMASUKAN PILIHAN ANDA: ");
+scanf("%d", &pilih);
+
+switch(pilih){
+
+    case 1:
+    strcpy(kAsal, "BADUNG");
+    break;
+
+    case 2:
+    strcpy(kAsal, "BANGLI");
+    break;
+
+    case 3:
+    strcpy(kAsal, "BULELENG");
+    break;
+
+    case 4:
+    strcpy(kAsal, "GIANYAR");
+    break;
+
+    case 5:
+    strcpy(kAsal, "JEMBRANA");
+    break;
+
+    case 6:
+    strcpy(kAsal, "KARANGASEM");
+    break;
+
+    case 7:
+    strcpy(kAsal, "KLUNGKUNG");
+    break;
+
+    case 8:
+    strcpy(kAsal, "TABANAN");
+    break;
+
+    case 9:
+    strcpy(kAsal, "DENPASAR");
+    break;
+
+    default:
+    printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
+    kabAsal();
+    break;
+}
+
+}
+
+void kabTujuan(){
+
+int pilih;
+
+printf("\t\t====================================================\n");
+printf("\t\t                KABUPATEN PENERIMA                  \n");
+printf("\t\t====================================================\n");
+printf("\t\t|| 1. BADUNG                                      ||\n");
+printf("\t\t|| 2. BANGLI                                      ||\n");
+printf("\t\t|| 3. BULELENG                                    ||\n");
+printf("\t\t|| 4. GIANYAR                                     ||\n");
+printf("\t\t|| 5. JEMBRANA                                    ||\n");
+printf("\t\t|| 6. KARANGASEM                                  ||\n");
+printf("\t\t|| 7. KLUNGKUNG                                   ||\n");
+printf("\t\t|| 8. TABANAN                                     ||\n");
+printf("\t\t|| 9. DENPASAR                                    ||\n");
+printf("\t\t====================================================\n");
+printf("\t\tMASUKAN PILIHAN ANDA: ");
+scanf("%d", &pilih);
+
+switch(pilih){
+
+    case 1:
+    strcpy(kTujuan, "BADUNG");
+    break;
+
+    case 2:
+    strcpy(kTujuan, "BANGLI");
+    break;
+
+    case 3:
+    strcpy(kTujuan, "BULELENG");
+    break;
+
+    case 4:
+    strcpy(kTujuan, "GIANYAR");
+    break;
+
+    case 5:
+    strcpy(kTujuan, "JEMBRANA");
+    break;
+
+    case 6:
+    strcpy(kTujuan, "KARANGASEM");
+    break;
+
+    case 7:
+    strcpy(kTujuan, "KLUNGKUNG");
+    break;
+
+    case 8:
+    strcpy(kTujuan, "TABANAN");
+    break;
+
+    case 9:
+    strcpy(kTujuan, "DENPASAR");
+    break;
+
+    default:
+    printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
+    kabTujuan();
+    break;
+}
+
+}
+
+void waktuSampai(){
+	
+    double cepat=0.4;
+    double time;
+
+    time= brg.jarak / cepat;
+
+    printf("\t\tBARANG ANDA DIPERKIRAKAN SAMPAI DALAM %.1f MENIT \n", time);
+}
+
+void prosesBerat(){
 
 if(brg.berat <= 5){
     brg.harga= ((brg.berat*5)/ brg.berat * 1000);
+    fflush(stdin);
 
-}else if(brg.berat>5){
+}
+else if(brg.berat>5 && brg.berat <30){
     int temp= (brg.berat % 5);
+    fflush(stdin);
     if(temp==0){
         brg.harga= (brg.berat/5) * ((brg.berat*5)/brg.berat) * 1000;
+        fflush(stdin);
     }else{
         brg.harga= ((brg.berat/5)+1) * ((brg.berat*5)/brg.berat) * 1000;
+        fflush(stdin);
     }
-}else if(brg.berat<1 || brg.berat==0){
-    printf("\t\tMOHON MASUKAN BERAT DENGAN NILAI YANG BULAT \n");
-    prosesBerat();
 }
 }
 
@@ -333,6 +477,7 @@ int ulang;
 system("clear || cls");
 printf("\t\tBERAT TOTAL BARANG (KG): ");
 scanf("%d", &brg.berat);
+fflush(stdin);
 
 if(brg.berat<1){
     printf("\t\tMASUKAN BERAT DENGAN BENAR! \n");
@@ -360,7 +505,7 @@ if(brg.jarak<=5){
     amn.harga1= brg.harga + 2000;
     fflush(stdin);
 
-}else if(brg.jarak>5){
+}else if(brg.jarak>5 && brg.jarak<110){
     int temp= (brg.jarak % 5);
     if(temp==0){
         amn.harga1= (brg.jarak/5) * ((brg.harga*5)/brg.harga) * 3000;
@@ -369,6 +514,9 @@ if(brg.jarak<=5){
         amn.harga1= ((brg.jarak/5)+1) * ((brg.harga*5)/brg.harga) * 3000;
         fflush(stdin);
     }
+}else{
+    printf("\t\tMOHON MAAF JARAK MAX 110 KM\n");
+    jarak();
 }
 }
 
