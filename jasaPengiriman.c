@@ -79,7 +79,7 @@ void resi(){
   struct tm tm = *localtime(&t);
 
     FILE *fptr;
-    fptr=fopen("struk.txt", "a+");
+    fptr=fopen("struk.txt", "ab+");
 
     fprintf(fptr, "\t\t====================================================\n");
     fprintf(fptr, "\t\t          J A S A   P E N G I R I M AN              \n");
@@ -101,6 +101,7 @@ void resi(){
     fprintf(fptr, "\t\t----------------------------------------------------\n");
     fprintf(fptr, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
     fprintf(fptr, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+    fprintf("\n\n\n");
     fflush(stdin);
     fclose(fptr);
 
