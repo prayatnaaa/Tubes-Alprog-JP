@@ -34,7 +34,7 @@ char perlindungan[100];
 int id;
 
 int main();
-
+void cobaLagi();
 
 void noId(){
 
@@ -79,7 +79,7 @@ void resi(){
   struct tm tm = *localtime(&t);
 
     FILE *fptr;
-    fptr=fopen("struk.txt", "wb");
+    fptr=fopen("struk.txt", "a+");
 
     fprintf(fptr, "\t\t====================================================\n");
     fprintf(fptr, "\t\t          J A S A   P E N G I R I M AN              \n");
@@ -121,14 +121,17 @@ FILE *fptr;
     } while (data != EOF);
     fflush(stdin);
     fclose(fptr);
-        
+
+    printf("\n\n");
+    
+    cobaLagi();
     }
 
 void cobaLagi(){
 
 int pilih;
 
-    printf("\t\t======== APAKAH INGIN MEMBUAT PESANAN LAGI? ========\n");
+    printf("\t\t============== KEMBALI KE MENU UTAMA? ==============\n");
     printf("\t\t|                                                  |\n");
     printf("\t\t| 1. YA                                            |\n");
     printf("\t\t| 2. TIDAK                                         |\n");
@@ -145,7 +148,7 @@ int pilih;
 
         case 2:
         printf("\t\t====================================================\n");
-        printf("\t\t| TERIMAKASIH TELAH MELAKUKAN PESANAN.             |\n");
+        printf("\t\t| TERIMAKASIH.                                     |\n");
         printf("\t\t|                                                  |\n");
         printf("\t\t====================================================\n");
         break;
@@ -532,8 +535,21 @@ void final(){
     
     int pilih;
 
-    printf("1. BUAT \n");
-    printf("2. LIHAT \n");
+system("clear || cls");
+printf("\t\t====================================================\n");
+printf("\t\t||           J A S A   P E N G I R I M AN         ||\n");
+printf("\t\t||                                                ||\n");
+printf("\t\t||   PUTU GEDE PRAYATNA    ||     DANU DAKSAWAN   ||\n");
+printf("\t\t||   2205551068            ||     2205551062      ||\n");
+printf("\t\t----------------------------------------------------\n");
+printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN....\n");
+getchar();
+
+printf("\t\t-------------------- M E N U ----------------------\n");
+printf("\t\t| 1. BUAT PESANAN                                 |\n");
+printf("\t\t| 2. LIHAT HISTORY PEMESANAN                      |\n");
+printf("\t\t---------------------------------------------------\n");
+printf("\t\tMASUKAN PILIHAN ANDA: ");
 scanf("%d", &pilih);
 switch(pilih){
 
