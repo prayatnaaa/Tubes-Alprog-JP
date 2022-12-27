@@ -86,10 +86,14 @@ void resi(){
     fprintf(fptr, "\t\t             P R A Y A T N A-D A N U                \n");
     fprintf(fptr, "\t\t====================================================\n");
     fprintf(fptr, "\t\tNAMA  PENGIRIM : %s                                          \n", pel.nama);
+    pel.nama[strlen(pel.nama)-1]='\0';
     fprintf(fptr, "\t\tALAMAT PENGIRIM: %s                                          \n", pel.alamat);
+    pel.alamat[strlen(pel.alamat)-1]='\0';
     fprintf(fptr, "\t\t----------------------------------------------------\n");
     fprintf(fptr, "\t\tNAMA  PENERIMA : %s                                          \n", pel.nama2);
+    pel.nama2[strlen(pel.nama2)-1]='\0';
     fprintf(fptr, "\t\tALAMAT PENERIMA: %s                                          \n", pel.alamat2);
+    pel.alamat2[strlen(pel.alamat2)-1]='\0';
     fprintf(fptr, "\t\t----------------------------------------------------\n");
     fprintf(fptr, "\t\tDETAIL BARANG      : %s                                   \n", detail);
     fprintf(fptr, "\t\tPERLINDUNGAN EKSTRA: %s                             \n", perlindungan);
@@ -101,7 +105,7 @@ void resi(){
     fprintf(fptr, "\t\t----------------------------------------------------\n");
     fprintf(fptr, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
     fprintf(fptr, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
-    fprintf("\n\n\n");
+    fprintf(fptr, "\n\n\n");
     fflush(stdin);
     fclose(fptr);
 
