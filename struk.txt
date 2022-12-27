@@ -5,16 +5,36 @@
 		NAMA  PENGIRIM : PRAYATNA DHARMA                                          
 		ALAMAT PENGIRIM: KAPAL, BADUNG, BALI                                          
 		----------------------------------------------------
-		NAMA  PENERIMA : DANU SMANSA                                          
-		ALAMAT PENERIMA: UBUNG, DENPASAR, BALI                                          
+		NAMA  PENERIMA : BORIS LEMKE                                          
+		ALAMAT PENERIMA: CANGGU, BADUNG, BALI                                          
 		----------------------------------------------------
-		DETAIL BARANG      : MAKANAN                                   
-		PERLINDUNGAN EKSTRA: SILVER                             
+		DETAIL BARANG      : PAKAIAN                                   
+		PERLINDUNGAN EKSTRA: ---                             
 		----------------------------------------------------
-		BERAT TOTAL BARANG   : 1 KG                           
-		JARAK TOTAL PENGIRIMAN: 7 KM                           
+		BERAT TOTAL BARANG   : 2 KG                           
+		JARAK TOTAL PENGIRIMAN: 11 KM                           
 		----------------------------------------------------
-		TOTAL: RP31000                                        
+		TOTAL: RP45000                                        
 		----------------------------------------------------
 		TANGGAL: 27-12-2022
-		JAM    : 08:34:00
+		JAM    : 08:38:31
+		====================================================
+		          J A S A   P E N G I R I M AN              
+		             P R A Y A T N A-D A N U                
+		====================================================
+		NAMA  PENGIRIM : PRAYATNA DHARMA                                          
+		ALAMAT PENGIRIM: PANJER, BALI                                          
+		----------------------------------------------------
+		NAMA  PENERIMA : DANU SMANSA                                          
+		ALAMAT PENERIMA: UBUNG, BALI                                          
+		----------------------------------------------------
+		DETAIL BARANG      : TONGKAT                                   
+		PERLINDUNGAN EKSTRA: PLATINUM                             
+		----------------------------------------------------
+		BERAT TOTAL BARANG   : 3 KG                           
+		JARAK TOTAL PENGIRIMAN: 7 KM                           
+		----------------------------------------------------
+		TOTAL: RP34000                                        
+		----------------------------------------------------
+		TANGGAL: 27-12-2022
+		JAM    : 08:43:59
