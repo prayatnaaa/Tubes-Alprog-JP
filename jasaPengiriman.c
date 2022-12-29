@@ -43,15 +43,6 @@ void cobaLagi();
 void waktuSampai();
 void lihatPengiriman();
 
-void noId(){
-
-int rand_num;
-srand(time(NULL));
-rand_num = random();
-
-printf("\t\tID PENGIRIMAN: %d \n", rand_num);
-}
-
 int validInt(int *var){
     char buff[1024];
     char cek;
