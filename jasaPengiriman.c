@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 struct pelanggan {
 
@@ -33,9 +34,14 @@ char detail[100];
 char perlindungan[100];
 char kAsal[100];
 char kTujuan[100];
+double lama;
+char stop1[100];
+char stop2[100];
+
 int main();
 void cobaLagi();
 void waktuSampai();
+void lihatPengiriman();
 
 void noId(){
 
@@ -231,43 +237,54 @@ printf("\t\t|| 9. DENPASAR                                    ||\n");
 printf("\t\t====================================================\n");
 printf("\t\tMASUKAN PILIHAN ANDA: ");
 scanf("%d", &pilih);
+system("clear || cls");
+fflush(stdin);
 
 switch(pilih){
 
     case 1:
     strcpy(kAsal, "BADUNG");
+    strcpy(stop1, "TUNA EXPRESS BADUNG");
     break;
 
     case 2:
     strcpy(kAsal, "BANGLI");
+    strcpy(stop1, "TUNA EXPRESS BANGLI");
     break;
 
     case 3:
     strcpy(kAsal, "BULELENG");
+    strcpy(stop1, "TUNA EXPRESS BULELENG");
     break;
 
     case 4:
     strcpy(kAsal, "GIANYAR");
+    strcpy(stop1, "TUNA EXPRESS GIANYAR");
     break;
 
     case 5:
     strcpy(kAsal, "JEMBRANA");
+    strcpy(stop1, "TUNA EXPRESS JEMBRANA");
     break;
 
     case 6:
     strcpy(kAsal, "KARANGASEM");
+    strcpy(stop1, "TUNA EXPRESS KARANGASEM");
     break;
 
     case 7:
     strcpy(kAsal, "KLUNGKUNG");
+    strcpy(stop1, "TUNA EXPRESS KLUNGKUNG");
     break;
 
     case 8:
     strcpy(kAsal, "TABANAN");
+    strcpy(stop1, "TUNA EXPRESS TABANAN");
     break;
 
     case 9:
     strcpy(kAsal, "DENPASAR");
+    strcpy(stop1, "TUNA EXPRESS DENPASAR");
     break;
 
     default:
@@ -297,43 +314,54 @@ printf("\t\t|| 9. DENPASAR                                    ||\n");
 printf("\t\t====================================================\n");
 printf("\t\tMASUKAN PILIHAN ANDA: ");
 scanf("%d", &pilih);
+system("clear || cls");
+fflush(stdin);
 
 switch(pilih){
 
     case 1:
     strcpy(kTujuan, "BADUNG");
+    strcpy(stop2, "TUNA EXPRESS BADUNG");
     break;
 
     case 2:
     strcpy(kTujuan, "BANGLI");
+    strcpy(stop2, "TUNA EXPRESS BANGLI");
     break;
 
     case 3:
     strcpy(kTujuan, "BULELENG");
+    strcpy(stop2, "TUNA EXPRESS BULELENG");
     break;
 
     case 4:
     strcpy(kTujuan, "GIANYAR");
+    strcpy(stop2, "TUNA EXPRESS GIANYAR");
     break;
 
     case 5:
     strcpy(kTujuan, "JEMBRANA");
+    strcpy(stop2, "TUNA EXPRESS JEMBRANA");
     break;
 
     case 6:
     strcpy(kTujuan, "KARANGASEM");
+    strcpy(stop2, "TUNA EXPRESS KARANGASEM");
     break;
 
     case 7:
     strcpy(kTujuan, "KLUNGKUNG");
+    strcpy(stop2, "TUNA EXPRESS KLUNGKUNG");
     break;
 
     case 8:
     strcpy(kTujuan, "TABANAN");
+    strcpy(stop2, "TUNA EXPRESS TABANAN");
     break;
 
     case 9:
     strcpy(kTujuan, "DENPASAR");
+    strcpy(stop2, "TUNA EXPRESS DENPASAR");
     break;
 
     default:
@@ -346,13 +374,75 @@ switch(pilih){
 
 void waktuSampai(){
 	
-    double cepat=0.4;
-    double time;
+    double cepat=40; //rata-rata kecepatan pengemudi adalah 40 km/h
+    lama= (brg.jarak*1000) / cepat; //untuk menmperkirakan berapa lama waktu yang diperlukan untuk barang sampai
 
-    time= brg.jarak / cepat;
-
-    printf("\t\tBARANG ANDA DIPERKIRAKAN SAMPAI DALAM %.1f MENIT \n", time);
 }
+
+void lihatPengiriman(){ //fungsi untuk melihat dimana barang kita berada ketika ingin melihatnya
+
+    char data;
+    double cepat;
+waktuSampai();
+
+    FILE *fjalan;
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    kabAsal();
+    kabTujuan();
+
+    if(strcmp(kAsal, kTujuan)==0){
+        fjalan=fopen("jalan.txt", "wb");    //membuat file untuk rute barang
+
+        fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
+        fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+        fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+        fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n\n");
+        fprintf(fjalan, "\t\t%s: %s --->", kAsal, pel.alamat);
+        sleep(lama);
+        fprintf(fjalan, " %s: %s \n", kTujuan, pel.alamat2);
+        fflush(stdin);
+        fclose(fjalan);
+        fflush(stdin);
+    }
+    else if(strcmp(kAsal, kTujuan)!=0){
+
+        fjalan=fopen("jalan.txt", "wb");
+        fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
+        fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+        fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+        fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n");
+        fprintf(fjalan, "\t\t%s: %s ---> ", kAsal, pel.alamat);
+        fprintf(fjalan, "\t\t%s ---> ", stop1);
+        fprintf(fjalan, "\t\t%s ---> ", stop2);
+        fprintf(fjalan, "\t\t%s: %s \n", kTujuan, pel.alamat2);
+        fflush(stdin);
+        fclose(fjalan);
+        
+} 
+
+}
+
+void ruteBarang(){
+
+char data;
+
+FILE *fjalan;
+    fjalan=fopen("jalan.txt", "r");
+    do {
+        data = fgetc(fjalan);
+        printf("%c", data);
+        fflush(stdin);
+ 
+    } while (data != EOF);
+    fflush(stdin);
+    fclose(fjalan);
+
+    printf("\n\n");
+    
+    cobaLagi();
+    }
 
 void prosesBerat(){
 
@@ -677,6 +767,7 @@ void menu(){
 infoBarang();
 dataPengirim();
 dataPenerima();
+lihatPengiriman();
 berat();
 jarak();
 pengaman();
@@ -701,9 +792,11 @@ getchar();
 printf("\t\t-------------------- M E N U ----------------------\n");
 printf("\t\t| 1. BUAT PESANAN                                 |\n");
 printf("\t\t| 2. LIHAT HISTORY PEMESANAN                      |\n");
+printf("\t\t| 3. LIHAT BARANG                                 |\n");
 printf("\t\t---------------------------------------------------\n");
 printf("\t\tMASUKAN PILIHAN ANDA: ");
 scanf("%d", &pilih);
+system("clear || cls");
 switch(pilih){
 
     case 1:
@@ -713,6 +806,11 @@ switch(pilih){
 
     case 2:
     tampilkanData();
+    fflush(stdin);
+    break;
+
+    case 3:
+    ruteBarang();
     fflush(stdin);
     break;
 
@@ -727,4 +825,5 @@ switch(pilih){
 int main(){
 
     final();
+    system("clear || cls");
 }
