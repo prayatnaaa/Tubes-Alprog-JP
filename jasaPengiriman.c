@@ -78,7 +78,7 @@ void resi(){
 
     system("clear || cls");
     printf("\t\t====================================================\n");
-    printf("\t\t          J A S A   P E N G I R I M AN              \n");
+    printf("\t\t          J A S A   P E N G I R I M A N             \n");
     printf("\t\t             P R A Y A T N A-D A N U                \n");
     printf("\t\t====================================================\n");
     waktu();
@@ -105,7 +105,7 @@ void resi(){
     fptr=fopen("struk.txt", "ab+");
 
     fprintf(fptr, "\t\t====================================================\n");
-    fprintf(fptr, "\t\t          J A S A   P E N G I R I M AN              \n");
+    fprintf(fptr, "\t\t          J A S A   P E N G I R I M A N             \n");
     fprintf(fptr, "\t\t             P R A Y A T N A-D A N U                \n");
     fprintf(fptr, "\t\t====================================================\n");
     fprintf(fptr, "\t\tNAMA  PENGIRIM : %s                                          \n", pel.nama);
@@ -789,7 +789,7 @@ int pilih;
 
     system("clear || cls");
     printf("\t\t====================================================\n");
-    printf("\t\t||           J A S A   P E N G I R I M AN         ||\n");
+    printf("\t\t||           J A S A   P E N G I R I M A N        ||\n");
     printf("\t\t||                                                ||\n");
     printf("\t\t||   PUTU GEDE PRAYATNA    ||     DANU DAKSAWAN   ||\n");
     printf("\t\t||   2205551068            ||     2205551062      ||\n");
@@ -798,9 +798,9 @@ int pilih;
     getchar();
 
     printf("\t\t-------------------- M E N U ----------------------\n");
-    printf("\t\t| 1. BUAT PESANAN                                 |\n");
-    printf("\t\t| 2. LIHAT HISTORY PEMESANAN                      |\n");
-    printf("\t\t| 3. LIHAT BARANG                                 |\n");
+    printf("\t\t| 1. BUAT PENGIRIMAN BARU                         |\n");
+    printf("\t\t| 2. LIHAT HISTORY DATA PENGIRIMAN                |\n");
+    printf("\t\t| 3. LIHAT RUTE PENGIRIMAN BARANG                 |\n");
     printf("\t\t| 4. EXIT                                         |\n");
     printf("\t\t---------------------------------------------------\n");
     intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
