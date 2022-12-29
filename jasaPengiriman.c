@@ -414,9 +414,9 @@ waktuSampai();
         fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
         fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n");
         fprintf(fjalan, "\t\t%s: %s ---> ", kAsal, pel.alamat);
-        fprintf(fjalan, "\t\t%s ---> ", stop1);
-        fprintf(fjalan, "\t\t%s ---> ", stop2);
-        fprintf(fjalan, "\t\t%s: %s \n", kTujuan, pel.alamat2);
+        fprintf(fjalan, "%s ---> ", stop1);
+        fprintf(fjalan, "%s ---> ", stop2);
+        fprintf(fjalan, "%s: %s \n", kTujuan, pel.alamat2);
         fflush(stdin);
         fclose(fjalan);
         
@@ -470,15 +470,17 @@ system("clear || cls");
 printf("\t\t====================================================\n");
 printf("\t\t                     DATA  PENGIRIM                 \n");
 printf("\t\t====================================================\n");
-printf("\t\tNAMA: ");
+printf("\t\tNAMA    : ");
 fgets(pel.nama, 100, stdin);
+fflush(stdin);
 pel.nama[strlen(pel.nama)-1]='\0';
-printf("\t\tALAMAT: ");
-fgets(pel.alamat, 100, stdin);
-pel.alamat[strlen(pel.alamat)-1]='\0';
 printf("\t\tNOMOR HP: ");
 scanf("%d", pel.telp);
 fflush(stdin);
+printf("\t\tALAMAT  : ");
+fgets(pel.alamat, 100, stdin);
+fflush(stdin);
+pel.alamat[strlen(pel.alamat)-1]='\0';
 
 }
 
@@ -488,17 +490,17 @@ system("clear || cls");
 printf("\t\t====================================================\n");
 printf("\t\t                     DATA  PENERIMA                 \n");
 printf("\t\t====================================================\n");
-printf("\t\tNAMA: ");
+printf("\t\tNAMA    : ");
 fgets(pel.nama2, 100, stdin);
 fflush(stdin);
 pel.nama2[strlen(pel.nama2)-1]='\0';
-printf("\t\tALAMAT: ");
-fgets(pel.alamat2, 100, stdin);
-fflush(stdin);
-pel.alamat2[strlen(pel.alamat2)-1]='\0';
 printf("\t\tNOMOR HP: ");
 scanf("%d", pel.telp2);
 fflush(stdin);
+printf("\t\tALAMAT  : ");
+fgets(pel.alamat2, 100, stdin);
+fflush(stdin);
+pel.alamat2[strlen(pel.alamat2)-1]='\0';
 
 if(strcmp(pel.alamat, pel.alamat2)==0){
     printf("\t\tALAMAT YANG ANDA MASUKAN SAMA! \n");
@@ -825,5 +827,4 @@ switch(pilih){
 int main(){
 
     final();
-    system("clear || cls");
 }
