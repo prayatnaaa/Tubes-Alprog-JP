@@ -51,6 +51,31 @@ rand_num = random();
 
 printf("\t\tID PENGIRIMAN: %d \n", rand_num);
 }
+
+int validInt(int *var){
+    char buff[1024];
+    char cek;
+    fflush(stdin);
+    if(fgets(buff, sizeof(buff), stdin) != NULL){
+        if(sscanf(buff, "%d %c", var, &cek) == 1) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void intValid(int *var, char *prompt){ //validasi untuk integer
+    while(1){
+        printf(prompt);
+        if(validInt(var))
+            break;
+        printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
+        printf("\n");
+        
+    }
+    
+    }
+
 void waktu(){
     time_t t = time(NULL);
   struct tm tm = *localtime(&t);
@@ -149,8 +174,7 @@ int pilih;
     printf("\t\t| 2. TIDAK                                         |\n");
     printf("\t\t|                                                  |\n");
     printf("\t\t====================================================\n");
-    printf("\t\tMASUKAN PILIHAN ANDA: ");
-    scanf("%d", &pilih);
+    intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA:");
     system("clear || cls");
     switch(pilih){
 
@@ -190,8 +214,7 @@ void infoBarang(){
     printf("\t\t|| 5. OBAT                                        ||\n");
     printf("\t\t|| 6. LAINNYA                                     ||\n");
     printf("\t\t====================================================\n");
-    printf("\t\tMASUKAN PILIHAN ANDA: ");
-    scanf("%d", &pilih);
+    intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
     fflush(stdin);
     system("clear || cls");
 
@@ -235,46 +258,45 @@ printf("\t\t|| 7. KLUNGKUNG                                   ||\n");
 printf("\t\t|| 8. TABANAN                                     ||\n");
 printf("\t\t|| 9. DENPASAR                                    ||\n");
 printf("\t\t====================================================\n");
-printf("\t\tMASUKAN PILIHAN ANDA: ");
-scanf("%d", &pilih);
+intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
 system("clear || cls");
 fflush(stdin);
 
 switch(pilih){
 
     case 1:
-    strcpy(kAsal, "BADUNG");
-    strcpy(stop1, "TUNA EXPRESS BADUNG");
+        strcpy(kAsal, "BADUNG");
+        strcpy(stop1, "TUNA EXPRESS BADUNG");
     break;
 
     case 2:
-    strcpy(kAsal, "BANGLI");
-    strcpy(stop1, "TUNA EXPRESS BANGLI");
+        strcpy(kAsal, "BANGLI");
+         strcpy(stop1, "TUNA EXPRESS BANGLI");
     break;
 
     case 3:
-    strcpy(kAsal, "BULELENG");
-    strcpy(stop1, "TUNA EXPRESS BULELENG");
+        strcpy(kAsal, "BULELENG");
+        strcpy(stop1, "TUNA EXPRESS BULELENG");
     break;
 
     case 4:
-    strcpy(kAsal, "GIANYAR");
-    strcpy(stop1, "TUNA EXPRESS GIANYAR");
+        strcpy(kAsal, "GIANYAR");
+         strcpy(stop1, "TUNA EXPRESS GIANYAR");
     break;
 
     case 5:
-    strcpy(kAsal, "JEMBRANA");
-    strcpy(stop1, "TUNA EXPRESS JEMBRANA");
+         strcpy(kAsal, "JEMBRANA");
+        strcpy(stop1, "TUNA EXPRESS JEMBRANA");
     break;
 
     case 6:
-    strcpy(kAsal, "KARANGASEM");
-    strcpy(stop1, "TUNA EXPRESS KARANGASEM");
+        strcpy(kAsal, "KARANGASEM");
+        strcpy(stop1, "TUNA EXPRESS KARANGASEM");
     break;
 
     case 7:
-    strcpy(kAsal, "KLUNGKUNG");
-    strcpy(stop1, "TUNA EXPRESS KLUNGKUNG");
+        strcpy(kAsal, "KLUNGKUNG");
+        strcpy(stop1, "TUNA EXPRESS KLUNGKUNG");
     break;
 
     case 8:
@@ -283,13 +305,13 @@ switch(pilih){
     break;
 
     case 9:
-    strcpy(kAsal, "DENPASAR");
-    strcpy(stop1, "TUNA EXPRESS DENPASAR");
+        strcpy(kAsal, "DENPASAR");
+        strcpy(stop1, "TUNA EXPRESS DENPASAR");
     break;
 
     default:
-    printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
-    kabAsal();
+        printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
+        kabAsal();
     break;
 }
 
@@ -312,61 +334,60 @@ printf("\t\t|| 7. KLUNGKUNG                                   ||\n");
 printf("\t\t|| 8. TABANAN                                     ||\n");
 printf("\t\t|| 9. DENPASAR                                    ||\n");
 printf("\t\t====================================================\n");
-printf("\t\tMASUKAN PILIHAN ANDA: ");
-scanf("%d", &pilih);
+intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
 system("clear || cls");
 fflush(stdin);
 
 switch(pilih){
 
     case 1:
-    strcpy(kTujuan, "BADUNG");
-    strcpy(stop2, "TUNA EXPRESS BADUNG");
+        strcpy(kTujuan, "BADUNG");
+        strcpy(stop2, "TUNA EXPRESS BADUNG");
     break;
 
     case 2:
-    strcpy(kTujuan, "BANGLI");
-    strcpy(stop2, "TUNA EXPRESS BANGLI");
+        strcpy(kTujuan, "BANGLI");
+        strcpy(stop2, "TUNA EXPRESS BANGLI");
     break;
 
     case 3:
-    strcpy(kTujuan, "BULELENG");
-    strcpy(stop2, "TUNA EXPRESS BULELENG");
+        strcpy(kTujuan, "BULELENG");
+        strcpy(stop2, "TUNA EXPRESS BULELENG");
     break;
 
     case 4:
-    strcpy(kTujuan, "GIANYAR");
-    strcpy(stop2, "TUNA EXPRESS GIANYAR");
+        strcpy(kTujuan, "GIANYAR");
+        strcpy(stop2, "TUNA EXPRESS GIANYAR");
     break;
 
     case 5:
-    strcpy(kTujuan, "JEMBRANA");
-    strcpy(stop2, "TUNA EXPRESS JEMBRANA");
+        strcpy(kTujuan, "JEMBRANA");
+        strcpy(stop2, "TUNA EXPRESS JEMBRANA");
     break;
 
     case 6:
-    strcpy(kTujuan, "KARANGASEM");
-    strcpy(stop2, "TUNA EXPRESS KARANGASEM");
+        strcpy(kTujuan, "KARANGASEM");
+        strcpy(stop2, "TUNA EXPRESS KARANGASEM");
     break;
 
     case 7:
-    strcpy(kTujuan, "KLUNGKUNG");
-    strcpy(stop2, "TUNA EXPRESS KLUNGKUNG");
+        strcpy(kTujuan, "KLUNGKUNG");
+        strcpy(stop2, "TUNA EXPRESS KLUNGKUNG");
     break;
 
     case 8:
-    strcpy(kTujuan, "TABANAN");
-    strcpy(stop2, "TUNA EXPRESS TABANAN");
+        strcpy(kTujuan, "TABANAN");
+        strcpy(stop2, "TUNA EXPRESS TABANAN");
     break;
 
     case 9:
-    strcpy(kTujuan, "DENPASAR");
-    strcpy(stop2, "TUNA EXPRESS DENPASAR");
+        strcpy(kTujuan, "DENPASAR");
+        strcpy(stop2, "TUNA EXPRESS DENPASAR");
     break;
 
     default:
-    printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
-    kabTujuan();
+        printf("\t\tMASUKAN INPUT DENGAN BENAR \n");
+        kabTujuan();
     break;
 }
 
@@ -383,52 +404,52 @@ void lihatPengiriman(){ //fungsi untuk melihat dimana barang kita berada ketika 
 
     char data;
     double cepat;
-waktuSampai();
+    waktuSampai();
 
-    FILE *fjalan;
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
+        FILE *fjalan;
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t);
 
-    kabAsal();
-    kabTujuan();
+         kabAsal();
+         kabTujuan();
 
-    if(strcmp(kAsal, kTujuan)==0){
-        fjalan=fopen("jalan.txt", "wb");    //membuat file untuk rute barang
+            if(strcmp(kAsal, kTujuan)==0){
+            fjalan=fopen("jalan.txt", "wb");    //membuat file untuk rute barang
 
-        fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
-        fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-        fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
-        fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n\n");
-        fprintf(fjalan, "\t\t%s: %s --->", kAsal, pel.alamat);
-        sleep(lama);
-        fprintf(fjalan, " %s: %s \n", kTujuan, pel.alamat2);
-        fflush(stdin);
-        fclose(fjalan);
-        fflush(stdin);
-    }
-    else if(strcmp(kAsal, kTujuan)!=0){
+                fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
+                fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+                fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+                fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n\n");
+                fprintf(fjalan, "\t\t%s: %s --->", kAsal, pel.alamat);
+                sleep(lama);
+                fprintf(fjalan, " %s: %s \n", kTujuan, pel.alamat2);
+                fflush(stdin);
+                fclose(fjalan);
+                fflush(stdin);
+            }
+            else if(strcmp(kAsal, kTujuan)!=0){
 
-        fjalan=fopen("jalan.txt", "wb");
-        fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
-        fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
-        fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
-        fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n");
-        fprintf(fjalan, "\t\t%s: %s ---> ", kAsal, pel.alamat);
-        fprintf(fjalan, "%s ---> ", stop1);
-        fprintf(fjalan, "%s ---> ", stop2);
-        fprintf(fjalan, "%s: %s \n", kTujuan, pel.alamat2);
-        fflush(stdin);
-        fclose(fjalan);
+                fjalan=fopen("jalan.txt", "wb");
+                fprintf(fjalan, "\t\tWAKTU PEMESANAN: \n");
+                fprintf(fjalan, "\t\tTANGGAL: %02d-%02d-%d\n",  tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
+                fprintf(fjalan, "\t\tJAM    : %02d:%02d:%02d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+                fprintf(fjalan, "\t\tRUTE PERJALANAN BARANG ANDA: \n");
+                fprintf(fjalan, "\t\t%s: %s ---> ", kAsal, pel.alamat);
+                fprintf(fjalan, "%s ---> ", stop1);
+                fprintf(fjalan, "%s ---> ", stop2);
+                fprintf(fjalan, "%s: %s \n", kTujuan, pel.alamat2);
+                fflush(stdin);
+                fclose(fjalan);
         
-} 
+            } 
 
 }
 
 void ruteBarang(){
 
 char data;
-
 FILE *fjalan;
+
     fjalan=fopen("jalan.txt", "r");
     do {
         data = fgetc(fjalan);
@@ -436,12 +457,12 @@ FILE *fjalan;
         fflush(stdin);
  
     } while (data != EOF);
-    fflush(stdin);
-    fclose(fjalan);
+        fflush(stdin);
+        fclose(fjalan);
 
-    printf("\n\n");
+        printf("\n\n");
     
-    cobaLagi();
+        cobaLagi();
     }
 
 void prosesBerat(){
@@ -474,8 +495,7 @@ printf("\t\tNAMA    : ");
 fgets(pel.nama, 100, stdin);
 fflush(stdin);
 pel.nama[strlen(pel.nama)-1]='\0';
-printf("\t\tNOMOR HP: ");
-scanf("%d", pel.telp);
+intValid(pel.telp, "\t\tNOMOR HP: ");
 fflush(stdin);
 printf("\t\tALAMAT  : ");
 fgets(pel.alamat, 100, stdin);
@@ -494,8 +514,7 @@ printf("\t\tNAMA    : ");
 fgets(pel.nama2, 100, stdin);
 fflush(stdin);
 pel.nama2[strlen(pel.nama2)-1]='\0';
-printf("\t\tNOMOR HP: ");
-scanf("%d", pel.telp2);
+intValid(pel.telp, "\t\tNOMOR HP: ");
 fflush(stdin);
 printf("\t\tALAMAT  : ");
 fgets(pel.alamat2, 100, stdin);
@@ -522,8 +541,7 @@ printf("\t\t|| 2. PERLINDUNGAN GOLD               (+ Rp2000)  ||\n");
 printf("\t\t|| 3. PERLINDUNGAN PLATINUM           (+ Rp4000)  ||\n");
 printf("\t\t|| 4. NGGA DULU DEH                               ||\n");
 printf("\t\t====================================================\n");
-printf("\t\tMASUKAN PILIHAN: ");
-scanf("%d", &pilih);
+intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
 fflush(stdin);
 system("clear || cls");
     
@@ -567,25 +585,23 @@ void berat(){
 int ulang;
 
 system("clear || cls");
-printf("\t\tBERAT TOTAL BARANG (KG): ");
-scanf("%d", &brg.berat);
+intValid(&brg.berat, "\t\tBERAT BARANG YANG AKAN DIKIRIM (KG): ");
 fflush(stdin);
 
 if(brg.berat<1){
     printf("\t\tMASUKAN BERAT DENGAN BENAR! \n");
     getchar();
     berat();
-        }
-
-prosesBerat();
+ }
+    prosesBerat();
 
 }
 
 void jarak(){
 
 system("clear || cls");
-printf("\t\tMASUKAN JARAK PENGIRIMAN (KM): ");
-scanf("%d", &brg.jarak);
+intValid(&brg.jarak, "\t\tMASUKAN JARAK BARANG YANG AKAN DIKIRIM (KM): ");
+fflush(stdin);
 
 if(brg.jarak<1 || brg.jarak==0){
     printf("\t\tMASUKAN JARAK DENGAN BENAR! \n");
@@ -615,7 +631,7 @@ if(brg.jarak<=5){
 void menuBCA(){
 
 resi();
-printf("\t\t| BANK BCA                                         |\n");
+printf("\t\tBANK BCA                                         \n");
 printf("\t\t----------------------------------------------------\n");
 printf("\t\tNO REKENING:                                     \n");
 printf("\t\t0403288664                                       \n");
@@ -626,7 +642,7 @@ printf("\t\tTOTAL Rp %d \n", amn.harga2);
 void menuBNI(){
 
 resi();
-printf("\t\t| BANK BNI                                         |\n");
+printf("\t\tBANK BNI                                         \n");
 printf("\t\t----------------------------------------------------\n");
 printf("\t\tNO REKENING:                                     \n");
 printf("\t\t0778193597                                       \n");
@@ -637,7 +653,7 @@ printf("\t\tTOTAL Rp %d \n", amn.harga2);
 void menuMandiri(){
 
 resi();
-printf("\t\t| BANK MANDIRI                                     |\n");
+printf("\t\tBANK MANDIRI                                     \n");
 printf("\t\t====================================================\n");
 printf("\t\tNO REKENING:                                     \n");
 printf("\t\t0403288664                                       \n");
@@ -648,7 +664,7 @@ printf("\t\tTOTAL Rp %d \n", amn.harga2);
 void menuBRI(){
 
 resi();
-printf("\t\t| BANK BRI                                         |\n");
+printf("\t\tBANK BRI                                         \n");
 printf("\t\t====================================================\n");
 printf("\t\tNO REKENING:                                     \n");
 printf("\t\t0403288664                                       \n");
@@ -666,54 +682,53 @@ printf("\t\t|| 2. BNI                                         ||\n");
 printf("\t\t|| 3. MANDIRI                                     ||\n");
 printf("\t\t|| 4. BRI                                         ||\n");
 printf("\t\t====================================================\n");
-printf("\t\tMASUKAN PILIHAN: ");
-scanf("%d", &pilih);
+intValid(&pilih, "\t\tMASUKAN PILIHAN: ");
 fflush(stdin);
 system("clear || cls");
 switch(pilih){
 
     case 1:
-    menuBCA();
-    fflush(stdin);
-    printf("\t\t====================================================\n");
-    printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
-    getchar();
-    system("clear || cls");
+        menuBCA();
+        fflush(stdin);
+        printf("\t\t====================================================\n");
+        printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
+        getchar();
+        system("clear || cls");
     break;
 
     case 2:
-    menuBNI();
-    fflush(stdin);
-    printf("\t\t====================================================\n");
-    printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
-    getchar();
-    system("clear || cls");
+        menuBNI();
+        fflush(stdin);
+        printf("\t\t====================================================\n");
+        printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
+        getchar();
+        system("clear || cls");
     break;
 
     case 3:
-    menuMandiri();
-    fflush(stdin);
-    printf("\t\t====================================================\n");
-    printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
-    getchar();
-    system("clear || cls");
+        menuMandiri();
+        fflush(stdin);
+        printf("\t\t====================================================\n");
+        printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
+        getchar();
+        system("clear || cls");
     break;
 
     case 4:
-    menuBRI();
-    fflush(stdin);
-    printf("\t\t====================================================\n");
-    printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
-    getchar();
-    system("clear || cls");
+        menuBRI();
+        fflush(stdin);
+        printf("\t\t====================================================\n");
+        printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN...\n");
+        getchar();
+        system("clear || cls");
     break;
 
     default:
-    printf("\t\tINPUT YANG ANDA MASUKAN TIDAK VALID \n");
-    getchar();
-    atm();
+        printf("\t\tINPUT YANG ANDA MASUKAN TIDAK VALID \n");
+        getchar();
+        atm();
     break;
-}
+    }
 }
 
 void metodeBayar(){
@@ -726,38 +741,38 @@ printf("\t\t|| 1. TUNAI                                       ||\n");
 printf("\t\t|| 2. ATM                                         ||\n");
 printf("\t\t|| 3. PAY LATER                                   ||\n");
 printf("\t\t====================================================\n");
-printf("\t\tMASUKAN PILIHAN: ");
-scanf("%d", &pilih);
+intValid(&pilih, "\t\tMASUKAN PILIHAN: ");
 fflush(stdin);
 system("clear || cls");
 
 switch(pilih){
 
     case 1:
-    resi();
-    printf("\t\tTOTAL: Rp%d                                         \n", amn.harga2);
-    printf("\t\t----------------------------------------------------\n");
-    printf("\t\tPRESS ENTER TO CONTINUE.....\n");
-    getchar();
+        resi();
+        printf("\t\tTOTAL: Rp%d                                         \n", amn.harga2);
+        printf("\t\t----------------------------------------------------\n");
+        printf("\t\tPRESS ENTER TO CONTINUE.....\n");
+        getchar();
     break;
 
     case 2:
-    atm();
+        atm();
     break;
 
     case 3:
-    hasil= amn.harga2 / 4;
-    resi();
-    printf("\t\tTOTAL: Rp%d                                         \n", amn.harga2);
-    printf("\t\tLUNASKAN DALAM 4 BULAN >> Rp%d / BULAN              \n", hasil);
-    printf("\t\t----------------------------------------------------\n");
-    printf("\t\tPRESS ENTER TO CONTINUE.....\n");
-    getchar();
+        hasil= amn.harga2 / 4;
+        resi();
+        printf("\t\tTOTAL: Rp%d                                         \n", amn.harga2);
+        printf("\t\tLUNASKAN DALAM 4 BULAN >> Rp%d / BULAN              \n", hasil);
+        printf("\t\t----------------------------------------------------\n");
+        printf("\t\tPRESS ENTER TO CONTINUE.....\n");
+        getchar();
     break;
 
     default:
-    printf("\t\tMASUKAN INPUT DENGAN BENAR! \n");
-    metodeBayar();
+        printf("\t\tMASUKAN INPUT DENGAN BENAR! \n");
+        metodeBayar();
+    break;
     
 }
 
@@ -779,52 +794,58 @@ cobaLagi();
 
 void final(){
     
-    int pilih;
+int pilih;
 
-system("clear || cls");
-printf("\t\t====================================================\n");
-printf("\t\t||           J A S A   P E N G I R I M AN         ||\n");
-printf("\t\t||                                                ||\n");
-printf("\t\t||   PUTU GEDE PRAYATNA    ||     DANU DAKSAWAN   ||\n");
-printf("\t\t||   2205551068            ||     2205551062      ||\n");
-printf("\t\t----------------------------------------------------\n");
-printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN....\n");
-getchar();
+    system("clear || cls");
+    printf("\t\t====================================================\n");
+    printf("\t\t||           J A S A   P E N G I R I M AN         ||\n");
+    printf("\t\t||                                                ||\n");
+    printf("\t\t||   PUTU GEDE PRAYATNA    ||     DANU DAKSAWAN   ||\n");
+    printf("\t\t||   2205551068            ||     2205551062      ||\n");
+    printf("\t\t----------------------------------------------------\n");
+    printf("\t\tTEKAN ENTER UNTUK MELANJUTKAN....\n");
+    getchar();
 
-printf("\t\t-------------------- M E N U ----------------------\n");
-printf("\t\t| 1. BUAT PESANAN                                 |\n");
-printf("\t\t| 2. LIHAT HISTORY PEMESANAN                      |\n");
-printf("\t\t| 3. LIHAT BARANG                                 |\n");
-printf("\t\t---------------------------------------------------\n");
-printf("\t\tMASUKAN PILIHAN ANDA: ");
-scanf("%d", &pilih);
-system("clear || cls");
-switch(pilih){
+    printf("\t\t-------------------- M E N U ----------------------\n");
+    printf("\t\t| 1. BUAT PESANAN                                 |\n");
+    printf("\t\t| 2. LIHAT HISTORY PEMESANAN                      |\n");
+    printf("\t\t| 3. LIHAT BARANG                                 |\n");
+    printf("\t\t| 4. EXIT                                         |\n");
+    printf("\t\t---------------------------------------------------\n");
+    intValid(&pilih, "\t\tMASUKAN PILIHAN ANDA: ");
+    system("clear || cls");
+    switch(pilih){
 
-    case 1:
-    menu();
-    fflush(stdin);
+     case 1:
+        menu();
+        fflush(stdin);
+     break;
+
+     case 2:
+        tampilkanData();
+        fflush(stdin);
+     break;
+
+     case 3:
+        ruteBarang();
+        fflush(stdin);
+     break;
+
+     case 4:
+        exit (0);
     break;
 
-    case 2:
-    tampilkanData();
-    fflush(stdin);
-    break;
-
-    case 3:
-    ruteBarang();
-    fflush(stdin);
-    break;
-
-    default:
-    printf("MASUKAN INPUT YANG VALID \n");
-    main();
-    fflush(stdin);
-    break;
-}
+     default:
+        printf("MASUKAN INPUT YANG VALID \n");
+        main();
+        fflush(stdin);
+     break;
+    }
 }
 
 int main(){
 
     final();
+
+    return 0;
 }
